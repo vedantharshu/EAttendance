@@ -27,7 +27,7 @@
         android:entries="@array/role_choice"
         android:textAlignment="center"
 
-        android:background="@color/lightestGreen"
+        android:background="@drawable/round_corner_bg"
         android:id="@+id/role_spinner"/>
 
 
