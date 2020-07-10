@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">EAttendance</string>
+    <string name="add_student">Add Students</string>
+    <string name="add_teachers">Add Teachers</string>
+    <string name="edit_students">Edit Students</string>
+    <string name="edit_teachers">Edit Teachers</string>
 </resources>
