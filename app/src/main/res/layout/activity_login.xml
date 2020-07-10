@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="#229922">
+    android:background="@color/colorbg">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,7 +27,7 @@
         android:entries="@array/role_choice"
         android:textAlignment="center"
 
-        android:background="@drawable/round_corner_bg"
+        android:background="@color/lightestGreen"
         android:id="@+id/role_spinner"/>
 
 
