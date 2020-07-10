@@ -5,5 +5,6 @@
     <color name="lightGreen">#68B2A0</color>
     <color name="lighterGreen">#CDE0C9</color>
     <color name="lightestGreen">#E0ECDE</color>
+    <color name="black">#000</color>
 
 </resources>
