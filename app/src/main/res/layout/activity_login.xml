@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".LoginActivity"
     android:background="#229922">
     <LinearLayout
@@ -61,7 +60,8 @@
         android:layout_marginHorizontal="80sp"
         android:text="LOGIN"
         android:textStyle="bold"
-        android:background="#228899"/>
+        android:background="#228899"
+        android:id="@+id/loginBTN"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
