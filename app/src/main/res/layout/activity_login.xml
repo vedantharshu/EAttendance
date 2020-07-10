@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="Login To E-Attendance"
         android:layout_marginTop="80sp"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#000"
         android:textAlignment="center"/>
