@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 public class AddTeachers extends AppCompatActivity {
@@ -27,6 +30,8 @@ public class AddTeachers extends AppCompatActivity {
         section_spinner =findViewById(R.id.section_spinner);
         teacher_code = findViewById(R.id.teacher_code);
         adding_teacher = findViewById(R.id.adding_teacher);
+
+        // Write a message to the database
 
         subject_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

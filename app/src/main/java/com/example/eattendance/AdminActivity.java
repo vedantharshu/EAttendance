@@ -15,18 +15,21 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
-        addStudents = (Button)findViewById(R.id.addStudents);
+        addStudents = findViewById(R.id.addStudents);
         addStudents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(AdminActivity.this, AddStudent.class);
-              
-        addTeachers=findViewById(R.id.addTeachers);
+                startActivity(i);
+            }
+        });
+
+        addTeachers = findViewById(R.id.addTeachers);
 
         addTeachers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(AdminActivity.this , AddTeachers.class);
+                Intent i = new Intent(AdminActivity.this, AddTeachers.class);
                 startActivity(i);
             }
         });
