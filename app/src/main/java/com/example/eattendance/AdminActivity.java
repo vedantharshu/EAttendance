@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class AdminActivity extends AppCompatActivity {
     Button addStudents;
+    Button addTeachers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,13 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(AdminActivity.this, AddStudent.class);
+              
+        addTeachers=findViewById(R.id.addTeachers);
+
+        addTeachers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AdminActivity.this , AddTeachers.class);
                 startActivity(i);
             }
         });
