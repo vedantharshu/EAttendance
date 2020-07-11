@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,11 +7,54 @@
     tools:context=".AdminActivity">
 
     <Button
-        android:id="@+id/Check"
+        android:id="@+id/addStudents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Check"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="145dp"
+        android:layout_marginBottom="399dp"
+        android:text="@string/add_student"
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="147dp" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/addTeachers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="145dp"
+        android:layout_marginBottom="334dp"
+        android:text="@string/add_teachers"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="147dp" />
+
+    <Button
+        android:id="@+id/editStudents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="145dp"
+        android:layout_marginBottom="269dp"
+        android:text="@string/edit_students"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="147dp" />
+
+    <Button
+        android:id="@+id/editTeachers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="208dp"
+        android:text="@string/edit_teachers"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="147dp" />
+
+</RelativeLayout>
