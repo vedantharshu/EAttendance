@@ -40,9 +40,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         item = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-
-
-
     }
 
     @Override

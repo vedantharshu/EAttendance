@@ -4,4 +4,5 @@
     <string name="add_teachers">Add Teachers</string>
     <string name="edit_students">Edit Students</string>
     <string name="edit_teachers">Edit Teachers</string>
+    <string name="enter_student_s_full_name">Enter Student\'s Full Name*</string>
 </resources>
