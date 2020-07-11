@@ -5,4 +5,57 @@
         <item>Teacher</item>
         <item>Student</item>
     </string-array>
+
+    <string-array name="subject_choice">
+        <item>Mathematics</item>
+        <item>Hindi</item>
+        <item>Hindi Vyakaran</item>
+        <item>Sanskrit</item>
+        <item>English Literature</item>
+        <item>English Grammar</item>
+        <item>Science</item>
+        <item>Chemistry</item>
+        <item>Physics</item>
+        <item>Biology</item>
+        <item>Social Studies</item>
+        <item>History</item>
+        <item>Geography</item>
+        <item>Art</item>
+        <item>Music</item>
+        <item>Physical Education</item>
+        <item>Computer</item>
+        <item>Environmental Studies</item>
+    </string-array>
+
+    <string-array name="class_choice">
+        <item>L.K.G</item>
+        <item>U.K.G</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+
+    </string-array>
+
+    <string-array name="section_choice">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>Commerce</item>
+        <item>Biology</item>
+        <item>Mathematics</item>
+    </string-array>
+
 </resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTeachers"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="@string/enter_subject"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="80dp"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:entries="@array/subject_choice"
+        android:textAlignment="center"
+
+        android:background="@drawable/round_corner_bg"
+        android:id="@+id/subject_spinner"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="@string/enter_class"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="40dp"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:entries="@array/class_choice"
+        android:textAlignment="center"
+
+        android:background="@drawable/round_corner_bg"
+        android:id="@+id/class_spinner"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="@string/enter_section"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="40dp"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:entries="@array/section_choice"
+        android:textAlignment="center"
+
+        android:background="@drawable/round_corner_bg"
+        android:id="@+id/section_spinner"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="50dp"
+        android:inputType="textCapWords"
+        android:hint="@string/teacher_code"
+        android:id="@+id/teacher_code"
+        android:autofillHints="" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/add_teachers"
+        android:id="@+id/adding_teacher"/>
+
+</LinearLayout>
