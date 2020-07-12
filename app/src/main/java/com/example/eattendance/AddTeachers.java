@@ -19,7 +19,6 @@ public class AddTeachers extends AppCompatActivity {
     Button adding_teacher;
     String teacherCode="", teacherName="";
     DatabaseReference mref, mref1;
-    String []a = new String[4];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
