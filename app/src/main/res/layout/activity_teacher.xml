@@ -17,7 +17,6 @@
             android:layout_marginTop="30sp"
             android:textColor="@color/colorText"
             android:textSize="18sp"/>
-
         <Spinner
 
             android:layout_width="match_parent"
@@ -109,10 +108,5 @@
             android:layout_marginBottom="20sp"
             android:elevation="5sp"
             android:id="@+id/update_attendanceBTN"/>
-
-
     </LinearLayout>
-
-
-
 </ScrollView>

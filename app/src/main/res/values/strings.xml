@@ -6,9 +6,16 @@
     <string name="select_class">Select Class</string>
     <string name="select_section">Select Section</string>
     <string name="select_subject">Select Section</string>
-
     <string name="update_attendance">Update Attendance</string>
     <string name="submit_attendance">Submit Attendance</string>
-
-
+    <string name="add_student">Add Students</string>
+    <string name="add_teachers">Add Teachers</string>
+    <string name="edit_students">Edit Students</string>
+    <string name="edit_teachers">Edit Teachers</string>
+    <string name="enter_student_s_full_name">Enter Student\'s Full Name*</string>
+    <string name="teacher_code">Enter Teacher Code</string>
+    <string name="enter_subject">Enter Subject*</string>
+    <string name="enter_class">Enter Class*</string>
+    <string name="enter_section">Enter Section*</string>
+    <string name="teacher_name">Enter Teacher Name</string>
 </resources>
