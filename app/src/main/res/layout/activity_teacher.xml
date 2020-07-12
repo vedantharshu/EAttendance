@@ -1,16 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TeacherActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_class"
+            android:gravity="center"
+            android:layout_marginTop="30sp"
+            android:textColor="@color/colorText"
+            android:textSize="18sp"/>
 
-    <Button
-        android:id="@+id/Check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Check"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="147dp" />
-</LinearLayout>
+        <Spinner
+
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginHorizontal="80sp"
+            android:background="@drawable/round_corner_bg"
+            android:id="@+id/class_spinner"
+            android:textAlignment="center"
+            android:elevation="5sp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_section"
+            android:gravity="center"
+            android:layout_marginTop="30sp"
+            android:textColor="@color/colorText"
+            android:textSize="18sp"/>
+
+        <Spinner
+
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginHorizontal="80sp"
+            android:background="@drawable/round_corner_bg"
+            android:id="@+id/section_spinner"
+            android:textAlignment="center"
+            android:elevation="5sp"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_subject"
+            android:gravity="center"
+            android:layout_marginTop="30sp"
+            android:textColor="@color/colorText"
+            android:textSize="18sp"/>
+
+        <Spinner
+
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginHorizontal="80sp"
+            android:background="@drawable/round_corner_bg"
+            android:id="@+id/subject_spinner"
+            android:textAlignment="center"
+            android:elevation="5sp"
+
+            />
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp">
+
+            <DatePicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mark_attendance"
+            android:background="@drawable/round_corner_bg"
+            android:layout_marginHorizontal="30sp"
+            android:layout_marginBottom="20sp"
+            android:elevation="5sp"
+            android:id="@+id/mark_attendanceBTN"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/update_attendance"
+            android:background="@drawable/round_corner_bg"
+            android:layout_marginHorizontal="30sp"
+            android:layout_marginBottom="20sp"
+            android:elevation="5sp"
+            android:id="@+id/update_attendanceBTN"/>
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>
