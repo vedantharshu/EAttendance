@@ -29,7 +29,7 @@ public class AdminActivity extends AppCompatActivity {
         addTeachers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(AdminActivity.this , AddTeachers.class);
+                Intent i = new Intent(AdminActivity.this, AddTeachers.class);
                 startActivity(i);
             }
         });
