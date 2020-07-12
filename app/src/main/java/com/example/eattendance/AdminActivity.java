@@ -17,14 +17,14 @@ public class AdminActivity extends AppCompatActivity {
 
         addStudents = findViewById(R.id.addStudents);
         addStudents.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(AdminActivity.this, AddStudent.class);
-                startActivity(i);
-            }
-        });
-
-        addTeachers = findViewById(R.id.addTeachers);
+                                           @Override
+                                           public void onClick(View view) {
+                                               Intent i = new Intent(AdminActivity.this, AddStudent.class);
+                                               startActivity(i);
+                                           }
+                                       });
+              
+        addTeachers=findViewById(R.id.addTeachers);
 
         addTeachers.setOnClickListener(new View.OnClickListener() {
             @Override
