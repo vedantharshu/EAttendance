@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">EAttendance</string>
+    <string name="class_string">Class</string>
+    <string name="section_string">Section</string>
+    <string name="mark_attendance">Mark Attendance</string>
+    <string name="select_class">Select Class</string>
+    <string name="select_section">Select Section</string>
+    <string name="select_subject">Select Section</string>
+    <string name="update_attendance">Update Attendance</string>
+    <string name="submit_attendance">Submit Attendance</string>
     <string name="add_student">Add Students</string>
     <string name="add_teachers">Add Teachers</string>
     <string name="edit_students">Edit Students</string>
