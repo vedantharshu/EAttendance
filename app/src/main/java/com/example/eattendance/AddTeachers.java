@@ -10,84 +10,47 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.List;
+import com.example.eattendance.backendAdmin.TeacherDetail;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class AddTeachers extends AppCompatActivity {
-    Spinner subject_spinner, class_spinner, section_spinner;
-    EditText teacher_code;
+    EditText teacher_name, teacher_code;
     Button adding_teacher;
-    String subject="", standard="", section="", teacher="";
+    String teacherCode="", teacherName="";
+    DatabaseReference mref, mref1;
     String []a = new String[4];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_teachers);
-        subject_spinner = findViewById(R.id.subject_spinner);
-        class_spinner = findViewById(R.id.class_spinner);
-        section_spinner =findViewById(R.id.section_spinner);
-        teacher_code = findViewById(R.id.teacher_code);
+
         adding_teacher = findViewById(R.id.adding_teacher);
+        teacher_name = findViewById(R.id.teacher_name);
+        teacher_code = findViewById(R.id.teacher_code);
 
-        subject_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                subject = parent.getItemAtPosition(position).toString();
-                a[0] = subject;
-                Toast.makeText(parent.getContext(), "Selected subject: " + subject, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        class_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                standard = parent.getItemAtPosition(position).toString();
-                a[1]=standard;
-                Toast.makeText(parent.getContext(), "Selected: class " + standard, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        section_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                section = parent.getItemAtPosition(position).toString();
-                a[2]=section;
-                Toast.makeText(parent.getContext(), "Selected section: " + section, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
+        mref = FirebaseDatabase.getInstance().getReference("teacher");
 
         adding_teacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringBuffer responseText = new StringBuffer();
-                responseText.append("The following were selected...\n");
-                teacher = teacher_code.getText().toString().trim();
-                if(teacher.compareTo("")==0){
-                    teacher_code.setError("This Field Cannot Be Empty!!");
-                }
-                a[3]=teacher;
-                for(int i=0;i<4;i++){
-                        responseText.append("\n" + a[i]);
-                    }
 
-                Toast.makeText(getApplicationContext(),
-                        responseText, Toast.LENGTH_LONG).show();
+                if(teacher_name.getText().toString().trim().compareTo("")==0){
+                    teacher_name.setError("This Field Cannot Be Empty!!");
+                }
+                else if(teacher_code.getText().toString().trim().compareTo("")==0){
+                    teacher_name.setError("This Field Cannot Be Empty!!");
+                }
+                else {
+                        teacherName = teacher_name.getText().toString().trim();
+                        teacherCode = teacher_code.getText().toString().trim();
+                        TeacherDetail td = new TeacherDetail(teacherName, teacherName + teacherCode);
+                        mref1 = mref.child(teacherName + teacherCode);
+                        mref1.setValue(td);
+
+                        Toast.makeText(getApplicationContext(),
+                            "Teacher Added Successfully", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

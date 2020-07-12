@@ -9,4 +9,5 @@
     <string name="enter_subject">Enter Subject*</string>
     <string name="enter_class">Enter Class*</string>
     <string name="enter_section">Enter Section*</string>
+    <string name="teacher_name">Enter Teacher Name</string>
 </resources>
