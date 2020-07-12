@@ -1,4 +1,4 @@
-package com.example.eattendance;
+package com.example.eattendance.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.eattendance.R;
 import com.example.eattendance.backendAdmin.TeacherDetail;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

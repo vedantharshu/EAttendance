@@ -1,4 +1,4 @@
-package com.example.eattendance;
+package com.example.eattendance.teacher;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.eattendance.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class TeacherActivity extends AppCompatActivity {
@@ -68,7 +69,7 @@ public class TeacherActivity extends AppCompatActivity {
         mark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this,AttendanceListActivity.class));
+                startActivity(new Intent(TeacherActivity.this, AttendanceListActivity.class));
             }
         });
 

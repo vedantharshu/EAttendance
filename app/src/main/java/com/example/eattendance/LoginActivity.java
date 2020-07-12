@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.eattendance.student.StudentActivity;
+import com.example.eattendance.teacher.TeacherActivity;
+
 public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinner;
     Button login;
@@ -28,9 +31,9 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                 if(item.equals("Admin"))
                     startActivity(new Intent(LoginActivity.this,AdminActivity.class));
                 else if(item.equals("Teacher"))
-                    startActivity(new Intent(LoginActivity.this,TeacherActivity.class));
+                    startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
                 else if(item.equals("Student"))
-                    startActivity(new Intent(LoginActivity.this,StudentActivity.class));
+                    startActivity(new Intent(LoginActivity.this, StudentActivity.class));
 
             }
         });

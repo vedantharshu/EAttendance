@@ -1,4 +1,4 @@
-package com.example.eattendance;
+package com.example.eattendance.teacher;
 
 import android.widget.CheckBox;
 

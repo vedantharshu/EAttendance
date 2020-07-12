@@ -1,4 +1,4 @@
-package com.example.eattendance;
+package com.example.eattendance.student;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.eattendance.R;
 
 import java.util.Calendar;
 

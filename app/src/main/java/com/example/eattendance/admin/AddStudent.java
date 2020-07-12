@@ -1,4 +1,4 @@
-package com.example.eattendance;
+package com.example.eattendance.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.eattendance.R;
 import com.example.eattendance.backendAdmin.StudentDetail;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

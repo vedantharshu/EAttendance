@@ -1,15 +1,15 @@
-package com.example.eattendance;
+package com.example.eattendance.teacher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.eattendance.R;
 
 import java.util.ArrayList;
 import java.util.List;

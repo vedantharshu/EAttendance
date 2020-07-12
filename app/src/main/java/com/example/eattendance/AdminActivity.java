@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.eattendance.admin.AddStudent;
+import com.example.eattendance.admin.AddTeachers;
+
 public class AdminActivity extends AppCompatActivity {
     Button addStudents;
     Button addTeachers;
