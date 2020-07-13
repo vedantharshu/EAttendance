@@ -18,4 +18,5 @@
     <string name="enter_class">Enter Class*</string>
     <string name="enter_section">Enter Section*</string>
     <string name="teacher_name">Enter Teacher Name</string>
+    <string name="section">Section*</string>
 </resources>

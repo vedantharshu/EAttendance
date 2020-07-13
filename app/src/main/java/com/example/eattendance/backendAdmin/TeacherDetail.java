@@ -1,19 +1,22 @@
 package com.example.eattendance.backendAdmin;
 
-public class TeacherDetail {
-    String username, password;
+import com.google.firebase.database.DatabaseReference;
 
-    public TeacherDetail(String username, String password) {
-        this.username = username;
+public class TeacherDetail {
+    String name, password;
+    DatabaseReference classes;
+
+    public TeacherDetail(String username, String password, DatabaseReference classes) {
+        this.name = username;
         this.password = password;
     }
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -23,4 +26,5 @@ public class TeacherDetail {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
