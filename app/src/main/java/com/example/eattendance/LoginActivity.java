@@ -116,6 +116,10 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
                 }
+
+                else if(item.equals("Teacher"))
+                    startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
+
                 else if(item.equals("Student"))
                     startActivity(new Intent(LoginActivity.this, StudentActivity.class));
 

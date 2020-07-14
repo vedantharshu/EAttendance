@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".admin.teachers.RemoveTeacher"></activity>
+        <activity android:name=".admin.teachers.AssignClasses" />
         <activity android:name=".teacher.AttendanceListActivity" />
         <activity android:name=".admin.AddStudent" />
-        <activity android:name=".admin.AddTeachers" />
+        <activity android:name=".admin.teachers.AddTeachers" />
         <activity android:name=".student.StudentActivity" />
         <activity android:name=".teacher.TeacherActivity" />
         <activity android:name=".admin.AdminActivity" />
