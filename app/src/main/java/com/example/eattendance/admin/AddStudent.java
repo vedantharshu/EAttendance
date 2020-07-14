@@ -32,14 +32,14 @@ public class AddStudent extends AppCompatActivity {
         addStudentClass = findViewById(R.id.idStudentClass);
         addStudentName = findViewById(R.id.idStudentFullName);
         addStudentSection = findViewById(R.id.idStudentSection);
-        addStudentRoll = findViewById(R.id.idStudentRollNo);
+        addStudentRoll = findViewById(R.id.idStudentRoll);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Handling Errors
                 if(addStudentClass.getText().toString().trim().compareTo("")==0){
-                    addStudentClass.setError("Thid field cannot be empty");
+                    addStudentClass.setError("This field cannot be empty");
                 }
                 else if((addStudentName.getText().toString().trim().compareTo("")==0)){
                     addStudentName.setError("This Field Cannot Be Empty");
@@ -61,7 +61,7 @@ public class AddStudent extends AppCompatActivity {
                     mref2.setValue(st);
 
                     Toast.makeText(getApplicationContext(),
-                            "Teacher Added Successfully", Toast.LENGTH_LONG).show();
+                            "Student Added Successfully", Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.eattendance.admin.AdminActivity;
 import com.example.eattendance.student.StudentActivity;
 import com.example.eattendance.teacher.TeacherActivity;
 
@@ -29,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View v) {
 
                 if(item.equals("Admin"))
-                    startActivity(new Intent(LoginActivity.this,AdminActivity.class));
+                    startActivity(new Intent(LoginActivity.this, AdminActivity.class));
                 else if(item.equals("Teacher"))
                     startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
                 else if(item.equals("Student"))
