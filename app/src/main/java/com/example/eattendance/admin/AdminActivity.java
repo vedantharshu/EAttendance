@@ -1,4 +1,4 @@
-package com.example.eattendance;
+package com.example.eattendance.admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.eattendance.admin.AddStudent;
-import com.example.eattendance.admin.AddTeachers;
+import com.example.eattendance.R;
 
 public class AdminActivity extends AppCompatActivity {
     Button addStudents;
