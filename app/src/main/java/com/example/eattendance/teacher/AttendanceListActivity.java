@@ -1,5 +1,6 @@
 package com.example.eattendance.teacher;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,6 +11,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.eattendance.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +30,22 @@ public class AttendanceListActivity extends AppCompatActivity {
     private StringBuffer absent;
     private int presentCount;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_list);
         Log.d(TAG,"AttendanceListActivity: Started");
+
+
+
+
+
+
+
+
         listView=(ListView)findViewById(R.id.attendanceLV);
+
         AttendanceItem ojasva=new AttendanceItem("1","Ojasva",false);
         AttendanceItem vedant=new AttendanceItem("2","Vedant",false);
         AttendanceItem shivansh=new AttendanceItem("3","Shivansh",false);
@@ -50,6 +66,8 @@ public class AttendanceListActivity extends AppCompatActivity {
 
 
         ArrayList<AttendanceItem> studentList=new ArrayList<>();
+
+
         studentList.add(ojasva);
         studentList.add(vedant);
         studentList.add(shivansh);
