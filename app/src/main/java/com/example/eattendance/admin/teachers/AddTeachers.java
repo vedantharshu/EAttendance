@@ -17,7 +17,7 @@ public class AddTeachers extends AppCompatActivity {
     EditText teacher_name, teacher_id;
     Button submit;
     String TeacherUniqueId, TeacherName;
-    protected DatabaseReference mref, mref1, mref2;
+    DatabaseReference mref, mref1, mref2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,10 @@ public class AddTeachers extends AppCompatActivity {
                   TeacherUniqueId = "201" + "_TE_" + teacher_id.getText().toString();
                   mref1 = mref.child(TeacherUniqueId);
                   mref2 = mref1.child("Classes");
-                  TeacherDetail td = new TeacherDetail(TeacherName, "Check", null);
-                  mref1.setValue(td);
+                  TeacherDetail td = new TeacherDetail(TeacherName, "Check", "None");
+                  mref1.child("Name").setValue(td.getName());
+                  mref1.child("Password").setValue(td.getPassword());
+                  mref1.child("Classes").setValue(td.getClasses());
                   Toast.makeText(getApplicationContext(),
                           "Teacher with ID " + TeacherUniqueId + " added Successfully", Toast.LENGTH_SHORT).show();
               }
