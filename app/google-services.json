@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "746914518322-svj2urq3giqrqr6csfi28jnsb32smp8t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eattendance",
+            "certificate_hash": "ff9f162a9ecfaa461c7991f07d98aae0a77dca0d"
+          }
+        },
+        {
           "client_id": "746914518322-24lmj3al3546de7acrir4g2ucl525oe7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
