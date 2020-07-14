@@ -17,5 +17,18 @@
     <string name="enter_class">Enter Class*</string>
     <string name="enter_section">Enter Section*</string>
     <string name="teacher_name">Enter Teacher Name</string>
+    <string name="note">*Classes will be created automatically</string>
+    <string name="submit">Submit</string>
+    <string name="rollno">RollNo.*</string>
     <string name="section">Section*</string>
+    <string name="classs">Class*</string>
+    <string name="enter_classandsection">Choose Class And Section</string>
+    <string name="enter_stdent">Enter Student Name To Add</string>
+    <string name="add">ADD</string>
+    <string name="showstudent">View Students</string>
+    <string name="login">LOGIN</string>
+    <string name="forgotPassword">Forgot Password?</string>
+    <string name="loginTo">Login To E-Attendance</string>
+    <string name="school_code">School Code</string>
+    <string name="teacher_ID">Teacher ID</string>
 </resources>

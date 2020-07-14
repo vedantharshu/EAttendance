@@ -36,15 +36,7 @@ public class AttendanceListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_list);
         Log.d(TAG,"AttendanceListActivity: Started");
-
-
-
-
-
-
-
-
-        listView=(ListView)findViewById(R.id.attendanceLV);
+        listView=findViewById(R.id.attendanceLV);
 
         AttendanceItem ojasva=new AttendanceItem("1","Ojasva",false);
         AttendanceItem vedant=new AttendanceItem("2","Vedant",false);
@@ -96,7 +88,7 @@ public class AttendanceListActivity extends AppCompatActivity {
         absent = new StringBuffer();
         absent.append("Present:\n");
 
-        submit=(Button)findViewById(R.id.submit_attenBTN);
+        submit=findViewById(R.id.submit_attenBTN);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +107,7 @@ public class AttendanceListActivity extends AppCompatActivity {
                     }
 
                 }
-                present.append("\nTotal Present: "+String.valueOf(presentCount));
+                present.append("\nTotal Present: "+(presentCount));
 
                 Toast.makeText(getApplicationContext(),present, Toast.LENGTH_LONG).show();
 

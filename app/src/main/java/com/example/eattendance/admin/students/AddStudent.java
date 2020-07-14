@@ -1,4 +1,4 @@
-package com.example.eattendance.admin;
+package com.example.eattendance.admin.students;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -51,15 +51,17 @@ public class AddStudent extends AppCompatActivity {
                     addStudentRoll.setError("This Field Cannot Be Empty");
                 }
                 else{
-                    standard = addStudentClass.getText().toString().trim() + "-" + addStudentSection.getText().toString().trim();
+                    standard = addStudentClass.getText().toString().trim() + addStudentSection.getText().toString().trim();
                     //creating child for node student
-                    mref1 = FirebaseDatabase.getInstance().getReference("student").child(standard);
+                    mref1 = FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Students").child(standard);
 
                     mref2 = mref1.child(addStudentName.getText().toString().trim() + addStudentRoll.getText().toString().trim());
                     //adding student detail and the object will be passed to mref2.
                     StudentDetail st = new StudentDetail(addStudentName.getText().toString().trim(),addStudentName.getText().toString().trim() + addStudentRoll.getText().toString().trim(),0,0);
                     mref2.setValue(st);
 
+                    addStudentRoll.setText("");
+                    addStudentName.setText("");
                     Toast.makeText(getApplicationContext(),
                             "Student Added Successfully", Toast.LENGTH_LONG).show();
                 }
