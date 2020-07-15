@@ -5,7 +5,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,14 +27,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class EditStudent extends AppCompatActivity {
-
+    ArrayList<RemoveStudent> studentList;
     RemoveStudentAdapter studentAdapter = null;
     ListView lv;
     Button show;
     Button add;
-    EditText name;
     Spinner spin1,spin2;
     DatabaseReference mref,mref1;
     LinearLayout newStd;
@@ -44,7 +46,6 @@ public class EditStudent extends AppCompatActivity {
         setContentView(R.layout.activity_edit_student);
         show = findViewById(R.id.showStudents);
         add = findViewById(R.id.AddStudent);
-        name = findViewById(R.id.studentName);
         spin1 = findViewById(R.id.spin1);
         spin2 = findViewById(R.id.spin2);
         newStd = findViewById(R.id.newStd);
@@ -82,15 +83,10 @@ public class EditStudent extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(name.getText().toString().trim().length()==0){
-                    name.setError("This field cannot be Empty!!");
-                }
-                else{
-                    StudentDetail studentDetail = new StudentDetail(name.getText().toString().trim(),"123",0,0);
-                    mref.child(standard+section).child(name.getText().toString().trim()).setValue(studentDetail);
-                    Toast.makeText(getApplicationContext(),"Student added successfully!!",Toast.LENGTH_LONG).show();
-                    name.setText("");
-                }
+                Intent i = new Intent(EditStudent.this, AddStudent.class);
+                i.putExtra("class", standard);
+                i.putExtra("section", section);
+                startActivity(i);
             }
         });
         //View Student Of Class
@@ -120,26 +116,24 @@ public class EditStudent extends AppCompatActivity {
 
             }
         });
-
     }
 
     public void showList(){
         newStd.setVisibility(View.VISIBLE);
         lv.setVisibility(View.VISIBLE);
         view.setVisibility(View.VISIBLE);
-        final ArrayList<RemoveStudent> studentList = new ArrayList<>();
         mref1=mref.child(standard+section);
         mref1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                studentList = new ArrayList<>();
                 studentList.clear();
                 for(DataSnapshot data: dataSnapshot.getChildren()){
-                    studentList.add(new RemoveStudent(data.getKey()));
+                    studentList.add(new RemoveStudent(data.child("username").getValue().toString()));
                 }
-                studentAdapter= new RemoveStudentAdapter(getApplicationContext(), R.layout.edit_list_student,studentList);
+                studentAdapter= new RemoveStudentAdapter(EditStudent.this, R.layout.edit_list_student,studentList, standard, section);
                 lv.setAdapter(studentAdapter);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

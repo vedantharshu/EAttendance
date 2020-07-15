@@ -1,19 +1,23 @@
 package com.example.eattendance.admin.students;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.example.eattendance.R;
 import com.google.firebase.database.DatabaseReference;
@@ -22,14 +26,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 import java.util.zip.Inflater;
 
+import static android.content.ContentValues.TAG;
+
 public class RemoveStudentAdapter extends ArrayAdapter<RemoveStudent> {
     Context context;
     List<RemoveStudent> studentList;
     DatabaseReference mref;
-    public RemoveStudentAdapter(@NonNull Context context, int resource, @NonNull List<RemoveStudent> objects) {
+    String standard, section;
+    public RemoveStudentAdapter(@NonNull Context context, int resource, @NonNull List<RemoveStudent> objects, String standard, String section) {
         super(context, resource, objects);
         this.context = context;
         studentList = objects;
+        this.standard = standard;
+        this.section = section;
     }
 
     @NonNull
@@ -46,17 +55,33 @@ public class RemoveStudentAdapter extends ArrayAdapter<RemoveStudent> {
            @Override
            public void onClick(View v) {
 
-               RemoveStudent r = getItem(position);
-
-               removeItem(position,r.getStudentName());
+               final RemoveStudent r = getItem(position);
+               AlertDialog.Builder builder = new AlertDialog.Builder(context);
+               builder.setTitle("Delete Student");
+               builder.setMessage("Are you sure?");
+               builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       removeItem(position,r.getStudentName());
+                   }
+               });
+               builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getContext(),"Delete cancelled", Toast.LENGTH_LONG);
+                   }
+               });
+               builder.show();
            }
        });
        return view;
     }
 
     private void removeItem(final int position,String student) {
-        mref= FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Students").child("2A");
-        mref.child(student).removeValue();
+        Log.d(TAG, "removeItem: "+standard+section);
+        String st[]=student.split(" ");
+        mref= FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Students").child(standard+section);
+        mref.child("201_ST_"+"2A_"+st[0]).removeValue();
 
        studentList.remove(position);
        notifyDataSetChanged();
