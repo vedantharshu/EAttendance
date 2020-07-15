@@ -28,8 +28,8 @@
     </string-array>
 
     <string-array name="class_choice">
-        <item>L.K.G</item>
-        <item>U.K.G</item>
+        <item>LKG</item>
+        <item>UKG</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
