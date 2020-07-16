@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +21,7 @@ public class AddStudent extends AppCompatActivity {
     EditText addStudentClass;
     EditText addStudentSection;
     EditText addStudentRoll;
-    String standard;
+    String standard,code;
     DatabaseReference mref,mref1, mref2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +37,11 @@ public class AddStudent extends AppCompatActivity {
         addStudentRoll = findViewById(R.id.idStudentRoll);
 
         Bundle extras = getIntent().getExtras();
-        String div,sec;
 
         if (extras != null) {
-            div = extras.getString("class");
-            sec = extras.getString("section");
-            addStudentClass.setText(div);
-            addStudentSection.setText(sec);
-            // and get whatever type user account id is
+            code = extras.getString("code");
         }
+        Log.d("TAG2", "onCreate: addstu"+code);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,11 +61,14 @@ public class AddStudent extends AppCompatActivity {
                 else{
                     standard = addStudentClass.getText().toString().trim() + addStudentSection.getText().toString().trim();
                     //creating child for node student
-                    mref1 = FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Students").child(standard);
+                    mref1 = FirebaseDatabase.getInstance().getReference("Admins").child("AD_"+code).child("Students").child(standard);
 
-                    mref2 = mref1.child("201_ST_"+standard+"_"+addStudentRoll.getText().toString().trim());
+                    mref2 = mref1.child(code+"_ST_"+standard+"_"+addStudentRoll.getText().toString().trim());
                     //adding student detail and the object will be passed to mref2.
-                    StudentDetail st = new StudentDetail(addStudentRoll.getText().toString().trim()+" " +addStudentName.getText().toString().trim(),addStudentName.getText().toString().trim() + addStudentRoll.getText().toString().trim(),0,0);
+                    StudentDetail st = new StudentDetail(addStudentRoll.getText().toString().trim()+" " +addStudentName.getText().toString().trim(),
+                            addStudentName.getText().toString().trim() + addStudentRoll.getText().toString().trim(),
+                            0,
+                            0);
                     mref2.setValue(st);
 
                     addStudentRoll.setText("");

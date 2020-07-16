@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +40,7 @@ public class EditStudent extends AppCompatActivity {
     Spinner spin1,spin2;
     DatabaseReference mref,mref1;
     LinearLayout newStd;
-    String standard,section;
+    String standard,section, code;
     View view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,12 @@ public class EditStudent extends AppCompatActivity {
         view.setVisibility(View.INVISIBLE);
         newStd.setVisibility(View.INVISIBLE);
         lv.setVisibility(View.INVISIBLE);
+
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            code = extras.getString("code");
+        }
         //choosing class
         spin1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -78,14 +86,13 @@ public class EditStudent extends AppCompatActivity {
 
             }
         });
-        mref= FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Students");
+        mref= FirebaseDatabase.getInstance().getReference("Admins").child("AD_"+code).child("Students");
         //Add Student to class
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(EditStudent.this, AddStudent.class);
-                i.putExtra("class", standard);
-                i.putExtra("section", section);
+                i.putExtra("code", code);
                 startActivity(i);
             }
         });
@@ -131,7 +138,7 @@ public class EditStudent extends AppCompatActivity {
                 for(DataSnapshot data: dataSnapshot.getChildren()){
                     studentList.add(new RemoveStudent(data.child("username").getValue().toString()));
                 }
-                studentAdapter= new RemoveStudentAdapter(EditStudent.this, R.layout.edit_list_student,studentList, standard, section);
+                studentAdapter= new RemoveStudentAdapter(EditStudent.this, R.layout.edit_list_student,studentList, standard, section, code);
                 lv.setAdapter(studentAdapter);
             }
             @Override

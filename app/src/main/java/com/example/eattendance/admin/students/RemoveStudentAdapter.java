@@ -2,6 +2,7 @@ package com.example.eattendance.admin.students;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,18 +28,20 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 import static android.content.ContentValues.TAG;
+import static android.content.Context.MODE_PRIVATE;
 
 public class RemoveStudentAdapter extends ArrayAdapter<RemoveStudent> {
     Context context;
     List<RemoveStudent> studentList;
     DatabaseReference mref;
-    String standard, section;
-    public RemoveStudentAdapter(@NonNull Context context, int resource, @NonNull List<RemoveStudent> objects, String standard, String section) {
+    String standard, section, code;
+    public RemoveStudentAdapter(@NonNull Context context, int resource, @NonNull List<RemoveStudent> objects, String standard, String section, String code) {
         super(context, resource, objects);
         this.context = context;
         studentList = objects;
         this.standard = standard;
         this.section = section;
+        this.code = code;
     }
 
     @NonNull
@@ -80,8 +83,8 @@ public class RemoveStudentAdapter extends ArrayAdapter<RemoveStudent> {
     private void removeItem(final int position,String student) {
         Log.d(TAG, "removeItem: "+standard+section);
         String st[]=student.split(" ");
-        mref= FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Students").child(standard+section);
-        mref.child("201_ST_"+"2A_"+st[0]).removeValue();
+        mref= FirebaseDatabase.getInstance().getReference("Admins").child("AD_"+code).child("Students").child(standard+section);
+        mref.child(code+"_ST_"+standard+section+"_"+st[0]).removeValue();
 
        studentList.remove(position);
        notifyDataSetChanged();
