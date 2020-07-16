@@ -51,6 +51,28 @@
 
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_lecture"
+            android:gravity="center"
+            android:layout_marginTop="30sp"
+            android:textColor="@color/colorText"
+            android:textSize="18sp"/>
+
+        <Spinner
+
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginHorizontal="80sp"
+            android:background="@drawable/round_corner_bg"
+            android:id="@+id/lecture_spinner"
+            android:textAlignment="center"
+            android:elevation="5sp"
+
+            />
+
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,7 +88,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/datepicker_teacher"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

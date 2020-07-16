@@ -3,6 +3,7 @@ package com.example.eattendance.teacher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,18 @@ public class AttendanceListActivity extends AppCompatActivity {
     private StringBuffer present;
     private StringBuffer absent;
     private int presentCount;
+    private String class_value;
+    private String uname;
+    private String adminID;
+    ArrayList<AttendanceItem> studentList;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef,myRef2;
+    private String schoolID;
+    private String rollNo;
+    private ArrayList<String> IDs;
+    private ArrayList<String> pres_abs;
+    private String date,subject,lecture;
+    private boolean dateExists;
 
 
     @Override
@@ -38,55 +51,65 @@ public class AttendanceListActivity extends AppCompatActivity {
         Log.d(TAG,"AttendanceListActivity: Started");
 
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                adminID=null;
+                class_value=null;
+                date=null;
+                subject=null;
+                lecture=null;
+            } else {
+                adminID=extras.getString("adminID");
+                class_value=extras.getString("class");
+                date=extras.getString("date");
+                subject=extras.getString("subject");
+                lecture=extras.getString("lecture");
+
+            }
+        } else {
+
+            adminID= (String) savedInstanceState.getSerializable("adminID");
+            class_value= (String) savedInstanceState.getSerializable("class");
+            date= (String) savedInstanceState.getSerializable("date");
+            subject= (String) savedInstanceState.getSerializable("subject");
+            lecture= (String) savedInstanceState.getSerializable("lecture");
 
 
+        }
+        String[] x=adminID.split("_");
+        schoolID=x[1];
 
-
-
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Admins").child(adminID);
 
         listView=(ListView)findViewById(R.id.attendanceLV);
 
-        AttendanceItem ojasva=new AttendanceItem("1","Ojasva",false);
-        AttendanceItem vedant=new AttendanceItem("2","Vedant",false);
-        AttendanceItem shivansh=new AttendanceItem("3","Shivansh",false);
-        AttendanceItem jagrat=new AttendanceItem("4","Jagrat",false);
-        AttendanceItem A=new AttendanceItem("5","A",false);
-        AttendanceItem B=new AttendanceItem("6","B",false);
-        AttendanceItem C=new AttendanceItem("7","C",false);
-        AttendanceItem D=new AttendanceItem("8","D",false);
-        AttendanceItem E=new AttendanceItem("9","E",false);
-        AttendanceItem F=new AttendanceItem("10","F",false);
-        AttendanceItem G=new AttendanceItem("11","G",false);
-        AttendanceItem H=new AttendanceItem("12","H",false);
-        AttendanceItem I=new AttendanceItem("13","I",false);
-        AttendanceItem J=new AttendanceItem("14","J",false);
-        AttendanceItem K=new AttendanceItem("15","K",false);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
+                studentList=new ArrayList<>();
+                int i=1;
+                for(DataSnapshot stu:dataSnapshot.child("Students").child(class_value).getChildren())
+                {
+                    String[] sn=stu.child("username").getValue().toString().split("\\s",2);
+                    studentList.add(new AttendanceItem(Integer.toString(i),sn[1],false));
+                            i++;
+                }
+                adapter=new AttendanceListAdapter(AttendanceListActivity.this,R.layout.activity_attendance_list,studentList);
+                listView.setAdapter(adapter);
+                Log.d(TAG, "StudentList got........:)");
+            }
 
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                //Toast.makeText(AttendanceListActivity.this, "database error", Toast.LENGTH_LONG).show();
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
 
-
-        ArrayList<AttendanceItem> studentList=new ArrayList<>();
-
-
-        studentList.add(ojasva);
-        studentList.add(vedant);
-        studentList.add(shivansh);
-        studentList.add(jagrat);
-        studentList.add(A);
-        studentList.add(B);
-        studentList.add(C);
-        studentList.add(D);
-        studentList.add(E);
-        studentList.add(F);
-        studentList.add(G);
-        studentList.add(H);
-        studentList.add(I);
-        studentList.add(J);
-        studentList.add(K);
-
-
-        adapter=new AttendanceListAdapter(this,R.layout.activity_attendance_list,studentList);
-        listView.setAdapter(adapter);
 
         presentCount=0;
 
@@ -97,9 +120,15 @@ public class AttendanceListActivity extends AppCompatActivity {
         absent.append("Present:\n");
 
         submit=(Button)findViewById(R.id.submit_attenBTN);
+
+        // SUBMIT BUTTON
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                IDs=new ArrayList<>();
+                pres_abs=new ArrayList<>();
 
 
                 List<AttendanceItem> atList =adapter.attendanceList;
@@ -108,16 +137,43 @@ public class AttendanceListActivity extends AppCompatActivity {
                     if(attendance.isSelected()){
                         present.append("\n" + attendance.getName());
                         presentCount++;
+                        rollNo=schoolID+"_ST_"+class_value+"_"+(attendance.getRollno());
+                        IDs.add(rollNo);
+                        pres_abs.add("present");
                     }
                     else
                     {
                         absent.append("\n"+attendance.getName());
+                        rollNo=schoolID+"_ST_"+class_value+"_"+(attendance.getRollno());
+                        IDs.add(rollNo);
+                        pres_abs.add("absent");
                     }
 
                 }
                 present.append("\nTotal Present: "+String.valueOf(presentCount));
 
-                Toast.makeText(getApplicationContext(),present, Toast.LENGTH_LONG).show();
+
+                myRef2=myRef.child("Attendance").child(date).child(class_value).child(lecture).child(subject);
+                myRef2.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                        for(int i=0;i<IDs.size();i++)
+                        {
+                            myRef2.child(IDs.get(i)).setValue(pres_abs.get(i));
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                //Toast.makeText(getApplicationContext(),present, Toast.LENGTH_LONG).show();
 
                 finish();
             }
