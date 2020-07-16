@@ -65,7 +65,6 @@ public class AttendanceListActivity extends AppCompatActivity {
                 date=extras.getString("date");
                 subject=extras.getString("subject");
                 lecture=extras.getString("lecture");
-
             }
         } else {
 
@@ -164,7 +163,7 @@ public class AttendanceListActivity extends AppCompatActivity {
                             myRef2.child(IDs.get(i)).setValue(pres_abs.get(i));
                         }
 
-
+                        return;
                     }
 
                     @Override

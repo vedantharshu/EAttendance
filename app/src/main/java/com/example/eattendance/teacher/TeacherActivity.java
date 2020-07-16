@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.eattendance.R;
+import com.example.eattendance.UpdateActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -241,42 +242,18 @@ public class TeacherActivity extends AppCompatActivity {
 
         myRef2=database.getReference("Admins").child(adminID);
         updateBtn=(Button)findViewById(R.id.update_attendanceBTN);
+
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 date= datePicker.getDayOfMonth()+"-"+ (datePicker.getMonth() + 1)+"-"+datePicker.getYear();
-                myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
-
-
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot2) {
-
-                        if(dataSnapshot2.child("Attendance").child(String.valueOf(date)).child(String.valueOf(cl)).hasChild("Lec_"+String.valueOf(selectedLec)))
-                        {
-                            Intent intent=new Intent(TeacherActivity.this, AttendanceListActivity.class);
-
-                            intent.putExtra("adminID",adminID);
-                            intent.putExtra("class",cl);
-                            intent.putExtra("date",date);
-                            intent.putExtra("subject",selectedSub);
-                            intent.putExtra("lecture","Lec_"+selectedLec);
-                            startActivity(intent);
-
-
-                        }
-                        else
-                        {
-                            Toast.makeText(TeacherActivity.this,date+" "+cl+" "+selectedLec , Toast.LENGTH_LONG).show();
-                            //Toast.makeText(TeacherActivity.this, "Selected lecture has no entry.\nClick on Mark to mark.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                Intent intent=new Intent(TeacherActivity.this, UpdateActivity.class);
+                intent.putExtra("adminID",adminID);
+                intent.putExtra("class",cl);
+                intent.putExtra("date",date);
+                intent.putExtra("subject",selectedSub);
+                intent.putExtra("lecture","Lec_"+selectedLec);
+                startActivity(intent);
 
             }
         });
