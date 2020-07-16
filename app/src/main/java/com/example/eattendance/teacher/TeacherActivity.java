@@ -43,9 +43,17 @@ public class TeacherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_teacher);
 
 
-        classSpinner =  findViewById(R.id.class_spinner);
 
-        subjectSpinner =  findViewById(R.id.subject_spinner);
+
+
+
+
+
+
+
+        classSpinner = (Spinner) findViewById(R.id.class_spinner);
+
+        subjectSpinner = (Spinner) findViewById(R.id.subject_spinner);
 
         classes=new ArrayList<>();
 
@@ -82,7 +90,7 @@ public class TeacherActivity extends AppCompatActivity {
                     }
                 }
                 Log.d(TAG, "Value retreived..");
-                ArrayAdapter<String> class_adapter = new ArrayAdapter<>(
+                ArrayAdapter<String> class_adapter = new ArrayAdapter<String>(
                         TeacherActivity.this,
                         android.R.layout.simple_spinner_item,
                         classes
@@ -104,7 +112,7 @@ public class TeacherActivity extends AppCompatActivity {
                         {
                             subjects.add(x);
                         }
-                        ArrayAdapter<String> subject_adapter = new ArrayAdapter<>(
+                        ArrayAdapter<String> subject_adapter = new ArrayAdapter<String>(
                                 TeacherActivity.this,
                                 android.R.layout.simple_spinner_item,
                                 subjects
@@ -137,7 +145,7 @@ public class TeacherActivity extends AppCompatActivity {
 
 
 
-        mark=findViewById(R.id.mark_attendanceBTN);
+        mark=(Button)findViewById(R.id.mark_attendanceBTN);
         mark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

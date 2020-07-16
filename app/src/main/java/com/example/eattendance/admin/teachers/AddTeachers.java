@@ -1,20 +1,25 @@
 package com.example.eattendance.admin.teachers;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.eattendance.R;
 import com.example.eattendance.backendAdmin.TeacherDetail;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddTeachers extends AppCompatActivity {
-    EditText teacher_name, teacher_id;
+    EditText teacher_name , teacher_id;
     Button submit;
     String TeacherUniqueId, TeacherName;
     DatabaseReference mref, mref1, mref2;
@@ -24,7 +29,7 @@ public class AddTeachers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_teachers);
 
-        mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Teachers");
+        mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_210").child("Teachers");
         submit = findViewById(R.id.idAddTeacherSubmit);
         teacher_name = findViewById(R.id.idTAddeacherFullName);
         teacher_id = findViewById(R.id.idAddTeacherID);
@@ -32,6 +37,7 @@ public class AddTeachers extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+
               if(teacher_name.getText().toString().trim().compareTo("")==0){
                   teacher_name.setError("This field cannot be empty");
               }
@@ -47,6 +53,7 @@ public class AddTeachers extends AppCompatActivity {
                   mref1.child("Name").setValue(td.getName());
                   mref1.child("Password").setValue(td.getPassword());
                   mref1.child("Classes").setValue(td.getClasses());
+
                   Toast.makeText(getApplicationContext(),
                           "Teacher with ID " + TeacherUniqueId + " added Successfully", Toast.LENGTH_SHORT).show();
               }
