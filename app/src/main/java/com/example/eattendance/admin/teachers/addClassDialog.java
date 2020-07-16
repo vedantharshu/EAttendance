@@ -18,15 +18,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.eattendance.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class addClassDialog  extends AppCompatDialogFragment {
 
     public EditText subject;
     public TextView t1,t2;
     public Spinner selectClass, selectSection;
-    DatabaseReference mref;
+    DatabaseReference mref ,mref1;
     String classValue , sectionValue, teacherID;
 
     public addClassDialog(String teacherID) {
@@ -85,13 +88,37 @@ public class addClassDialog  extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    private void addClass(String classValue, String sectionValue, String subjectName){
+    private void addClass(final String classValue, final String sectionValue, final String subjectName){
 
         Toast.makeText(getContext(),
                 teacherID+ " " +classValue+sectionValue + " " + subjectName, Toast.LENGTH_SHORT).show();
         mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Teachers").child(teacherID)
                 .child("Classes");
-        mref.child(classValue+sectionValue).setValue(subjectName);
 
+        //mref.child(classValue+sectionValue).setValue(subjectName);
+
+        mref1 = mref.child(classValue+sectionValue);
+
+//        mref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                if (dataSnapshot.hasChild(classValue+sectionValue)){
+//
+//                    String s = dataSnapshot.child(classValue+sectionValue).getValue().toString();
+//                    mref1.setValue(s + " " + subjectName);
+//                }
+//                else{
+//
+//                }
+//            }
+//
+//            mref.child(classValue+sectionValue).setValue(subjectName);
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 }
