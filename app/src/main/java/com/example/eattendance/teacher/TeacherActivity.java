@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.eattendance.LoginActivity;
 import com.example.eattendance.R;
 import com.example.eattendance.UpdateActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -274,12 +275,18 @@ public class TeacherActivity extends AppCompatActivity {
         });
         builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                startActivity(new Intent(TeacherActivity.this, LoginActivity.class));
                 finish();
             }
         });
         builder.show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 
 
 }
