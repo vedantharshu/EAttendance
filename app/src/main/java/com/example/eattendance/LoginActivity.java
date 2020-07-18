@@ -55,16 +55,12 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     String[] s=uname.split("_");
                     String code=s[0];
                     adminID="AD_"+code;
-
                     myRef= database.getReference("Admins");
-
-
                     myRef.child(adminID).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.exists())
                             {
-
                                 myRef.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -92,9 +88,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                                         Log.w(TAG, "Failed to read value.", error.toException());
                                     }
                                 });
-
-
-
                             }
                             else
                             {
@@ -108,13 +101,8 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                         }
                     });
                 }
-
-                else if(item.equals("Teacher"))
-                    startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
-
                 else if(item.equals("Student"))
                     startActivity(new Intent(LoginActivity.this, StudentActivity.class));
-
             }
         });
     }
