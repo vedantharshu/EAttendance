@@ -50,51 +50,33 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View v) {
 
                 if(item.equals("Teacher")) {
-                    uname=username.getText().toString();
+                    uname=username.getText().toString().trim();
                     pass=password.getText().toString();
                     String[] s=uname.split("_");
                     String code=s[0];
                     adminID="AD_"+code;
-
-                    myRef= database.getReference("Admins");
-
-
-                    myRef.child(adminID).addListenerForSingleValueEvent(new ValueEventListener() {
+                    Toast.makeText(LoginActivity.this, adminID, Toast.LENGTH_SHORT).show();
+                    myRef= database.getReference("Admins").child(adminID);
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.exists())
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists())
                             {
+                                if((dataSnapshot.child("Teachers").child(uname).child("Password").getValue().toString()).equals(pass))
+                                {
+                                    username.getText().clear();
+                                    password.getText().clear();
+                                    Intent i=new Intent(LoginActivity.this, TeacherActivity.class);
+                                    i.putExtra("user_name",uname);
+                                    i.putExtra("adminID",adminID);
+                                    startActivity(i);
+                                }
+                                else
+                                {
+                                    Toast.makeText(LoginActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
+                                }
 
-                                myRef.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                                        if((dataSnapshot.child(adminID).child("Teachers").child(uname).child("Password").getValue().toString()).equals(pass))
-                                        {
-                                            username.getText().clear();
-                                            password.getText().clear();
-                                            Intent i=new Intent(LoginActivity.this, TeacherActivity.class);
-                                            i.putExtra("user_name",uname);
-                                            i.putExtra("adminID",adminID);
-                                            startActivity(i);
-                                        }
-                                        else
-                                        {
-                                            Toast.makeText(LoginActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
-                                        }
-
-                                        Log.d(TAG, "Value retreived..");
-                                    }
-
-                                    @Override
-                                    public void onCancelled(DatabaseError error) {
-                                        Toast.makeText(LoginActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
-                                        Log.w(TAG, "Failed to read value.", error.toException());
-                                    }
-                                });
-
-
-
+                                Log.d(TAG, "Value retreived..");
                             }
                             else
                             {
@@ -108,13 +90,8 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                         }
                     });
                 }
-
-                else if(item.equals("Teacher"))
-                    startActivity(new Intent(LoginActivity.this, TeacherActivity.class));
-
                 else if(item.equals("Student"))
                     startActivity(new Intent(LoginActivity.this, StudentActivity.class));
-
             }
         });
     }
@@ -128,5 +105,14 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
     }
 }

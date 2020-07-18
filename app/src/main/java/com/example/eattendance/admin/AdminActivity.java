@@ -1,8 +1,8 @@
 package com.example.eattendance.admin;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.eattendance.LoginActivity;
 import com.example.eattendance.R;
 
 import com.example.eattendance.admin.students.AddStudent;
@@ -23,6 +24,7 @@ import com.example.eattendance.admin.teachers.AddTeachers;
 import com.example.eattendance.admin.teachers.AssignClasses;
 import com.example.eattendance.admin.teachers.RemoveTeacher;
 import com.example.eattendance.authentication.AdminAuth;
+import com.example.eattendance.teacher.TeacherActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -110,5 +112,26 @@ public class AdminActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mAuth.signOut();
+    }
+
+    @Override
+    public void onBackPressed() {
+        final androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("You will be signed out.");
+        builder.setMessage("Do you want to exit? ");
+        builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                mAuth.signOut();
+                startActivity(new Intent(AdminActivity.this, AdminAuth.class));
+                finish();
+            }
+        });
+        builder.setCancelable(false);
+        builder.show();
     }
 }

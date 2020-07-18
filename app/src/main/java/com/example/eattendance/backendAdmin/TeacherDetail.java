@@ -5,6 +5,9 @@ import com.google.firebase.database.DatabaseReference;
 public class TeacherDetail {
     String Name, Password, Classes;
 
+    public TeacherDetail(){
+
+    }
     public TeacherDetail(String Name, String Password, String Classes) {
         this.Name = Name;
         this.Password = Password;
