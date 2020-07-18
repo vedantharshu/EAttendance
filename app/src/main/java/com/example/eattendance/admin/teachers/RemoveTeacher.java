@@ -1,8 +1,10 @@
 package com.example.eattendance.admin.teachers;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,23 +45,39 @@ public class RemoveTeacher extends AppCompatActivity {
                     teacherID.setError("Enter Teacher ID");
                 }
                 else{
-                    mref.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(!dataSnapshot.hasChild(s)){
-                                teacherID.setError("Invalid ID");
-                            }
-                            else{
-                                mref.child(s).removeValue();
-                                Toast.makeText(getApplicationContext(), "Removed Successfully",Toast.LENGTH_SHORT).show();
-                            }
-                        }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RemoveTeacher.this);
 
+                    builder.setTitle("Delete Teacher");
+                    builder.setMessage("Are you sure?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        public void onClick(DialogInterface dialog, int which) {
+                            mref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if(!dataSnapshot.hasChild(s)){
+                                        teacherID.setError("Invalid ID");
+                                    }
+                                    else{
+                                        mref.child(s).removeValue();
+                                        Toast.makeText(getApplicationContext(), "Removed Successfully",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
 
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
                         }
                     });
+                   builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                       @Override
+                       public void onClick(DialogInterface dialog, int which) {
+                       }
+                   });
+                   builder.setCancelable(false);
+                   builder.show();
                 }
             }
         });

@@ -22,4 +22,16 @@ public class MainActivity extends AppCompatActivity {
             }
         },2500);
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                startActivity(new Intent(MainActivity.this,UserType.class));
+            }
+        },2000);
+    }
 }

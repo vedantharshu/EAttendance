@@ -1,21 +1,15 @@
-package com.example.eattendance;
+package com.example.eattendance.teacher;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.example.eattendance.R;
 import com.example.eattendance.backendAdmin.StudentDetail;
-import com.example.eattendance.teacher.AttendanceItem;
-import com.example.eattendance.teacher.AttendanceListActivity;
-import com.example.eattendance.teacher.AttendanceListAdapter;
-import com.example.eattendance.teacher.TeacherActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class UpdateActivity extends AppCompatActivity {
     private String date,subject,lecture, adminID,class_value, name, st;
@@ -32,13 +25,11 @@ public class UpdateActivity extends AppCompatActivity {
     private AttendanceListAdapter adapter = null;
     private ArrayList<AttendanceItem> studentList;
     private ArrayList<Boolean> fetchedList;
-
     private DatabaseReference mref, mref1,mref2;
-    private String stuname;
+    private String stuname, code;
     private String[] sn;
     private int i;
     private boolean mark;
-    private StringBuffer responseText = new StringBuffer();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +42,9 @@ public class UpdateActivity extends AppCompatActivity {
                 date=extras.getString("date");
                 subject=extras.getString("subject");
                 lecture=extras.getString("lecture");
+                code = adminID.split("_")[1];
             }
+
             fetchedList=new ArrayList<>();
         listView = findViewById(R.id.attendanceLv);
         mref = FirebaseDatabase.getInstance().getReference("Admins").child(adminID);
@@ -103,11 +96,11 @@ public class UpdateActivity extends AppCompatActivity {
                 for(int i=0;i<studentList.size();i++){
                     AttendanceItem attendance = studentList.get(i);
                     if(attendance.isSelected()){
-                        mref1.child("201_ST_"+class_value+"_"+attendance.getRollno()).setValue("present");
+                        mref1.child(code+"_ST_"+class_value+"_"+attendance.getRollno()).setValue("present");
                         responseText.append("\n" + attendance.getName());
                     }
                     else if(!attendance.isSelected()){
-                        mref1.child("201_ST_"+class_value+"_"+attendance.getRollno()).setValue("absent");
+                        mref1.child(code+"_ST_"+class_value+"_"+attendance.getRollno()).setValue("absent");
 
                        
                     }

@@ -24,6 +24,13 @@
         <item>Physical Education</item>
         <item>Computer</item>
         <item>Environmental Studies</item>
+        <item>Commerce</item>
+        <item>Accounts</item>
+        <item>Economics</item>
+        <item>Commercial Maths</item>
+        <item>Commerce</item>
+
+
     </string-array>
 
     <string-array name="class_choice">

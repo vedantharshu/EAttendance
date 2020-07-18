@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.eattendance.LoginActivity;
 import com.example.eattendance.R;
-import com.example.eattendance.UpdateActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -280,6 +279,7 @@ public class TeacherActivity extends AppCompatActivity {
                 finish();
             }
         });
+        builder.setCancelable(false);
         builder.show();
     }
 

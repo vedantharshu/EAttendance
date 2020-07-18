@@ -152,12 +152,7 @@ public class AttendanceListActivity extends AppCompatActivity {
 
                 }
                 present.append("\nTotal Present: "+String.valueOf(presentCount));
-
-
                 myRef1=myRef.child("Attendance").child(date).child(class_value).child(lecture).child(subject);
-
-
-
                         for(int i=0;i<IDs.size();i++) {
                             myRef1.child(IDs.get(i)).setValue(pres_abs.get(i));
                         }
@@ -172,18 +167,12 @@ public class AttendanceListActivity extends AppCompatActivity {
                             ++in;
                             if(at.isSelected()){
                                 int n = ob.getPresent();
-
-
                                     myRef2.child(data.getKey()).child("present").setValue(n+1);
-
 
                             }
                             else if (!at.isSelected()) {
                                 int n = ob.getAbsent();
-
-
                                     myRef2.child(data.getKey()).child("absent").setValue(n+1);
-
 
                             }
                         }
@@ -193,8 +182,6 @@ public class AttendanceListActivity extends AppCompatActivity {
 
                     }
                 });
-
-
                 //Toast.makeText(getApplicationContext(),present, Toast.LENGTH_LONG).show();
 
                 finish();
