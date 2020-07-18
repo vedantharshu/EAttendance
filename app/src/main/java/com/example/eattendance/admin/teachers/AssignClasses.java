@@ -33,7 +33,7 @@ public class AssignClasses extends AppCompatActivity {
     ArrayList<ClassItems> ClassesList;
     AssignClassAdapter classAdapter = null;
     TextView msg ;
-    String teacherID;
+    String teacherID, code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +48,21 @@ public class AssignClasses extends AppCompatActivity {
 
         assignClass.setVisibility(View.INVISIBLE);
 
+        Bundle extras = getIntent().getExtras();
+
+        if(extras != null) {
+            code = extras.getString("code");
+        }
+
+
         search.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
             Toast.makeText(getApplicationContext(),teacherId.getText().toString()+"is selected" ,Toast.LENGTH_LONG).show();
-            mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Teachers");
+
+            mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_"+code).child("Teachers");
+
             teacherID = teacherId.getText().toString();
             mref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -86,7 +95,7 @@ public class AssignClasses extends AppCompatActivity {
     }
 
     public void openDialog() {
-        addClassDialog d = new addClassDialog(teacherID);
+        addClassDialog d = new addClassDialog(teacherID, code);
         d.show(getSupportFragmentManager(), "Enter Class");
     }
 
@@ -109,7 +118,7 @@ public class AssignClasses extends AppCompatActivity {
                             for(DataSnapshot data: dataSnapshot1.getChildren()){
                                 ClassesList.add(new ClassItems(data.getKey().toString(), data.getValue().toString(), String.valueOf(i++)));
                             }
-                            classAdapter= new AssignClassAdapter(AssignClasses.this, R.layout.assign_classes_list,ClassesList, teacherID);
+                            classAdapter= new AssignClassAdapter(AssignClasses.this, R.layout.assign_classes_list,ClassesList, teacherID,code);
                             mlist.setAdapter(classAdapter);
                         }
 

@@ -21,19 +21,26 @@ import com.google.firebase.database.ValueEventListener;
 public class AddTeachers extends AppCompatActivity {
     EditText teacher_name , teacher_id;
     Button submit;
-    String TeacherUniqueId, TeacherName;
+    String TeacherUniqueId, TeacherName, code;
     DatabaseReference mref, mref1, mref2;
-
+    TextView idAddTeacherSchoolCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_teachers);
 
-        mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_210").child("Teachers");
+
         submit = findViewById(R.id.idAddTeacherSubmit);
         teacher_name = findViewById(R.id.idTAddeacherFullName);
         teacher_id = findViewById(R.id.idAddTeacherID);
+        idAddTeacherSchoolCode = findViewById(R.id.idAddTeacherSchoolCode);
+        Bundle extras = getIntent().getExtras();
 
+        if (extras != null) {
+            code = extras.getString("code");
+        }
+        idAddTeacherSchoolCode.setText(code);
+        mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_"+code).child("Teachers");
         submit.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -46,7 +53,7 @@ public class AddTeachers extends AppCompatActivity {
               }
               else{
                   TeacherName = teacher_name.getText().toString().trim();
-                  TeacherUniqueId = "201" + "_TE_" + teacher_id.getText().toString();
+                  TeacherUniqueId = code + "_TE_" + teacher_id.getText().toString();
                   mref1 = mref.child(TeacherUniqueId);
                   mref2 = mref1.child("Classes");
                   TeacherDetail td = new TeacherDetail(TeacherName, "Check", "None");

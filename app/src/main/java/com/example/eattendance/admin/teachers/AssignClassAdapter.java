@@ -29,12 +29,13 @@ public class AssignClassAdapter extends ArrayAdapter<ClassItems> {
     Context context;
     List<ClassItems> classList;
     DatabaseReference mref;
-    String teacherID;
-    public AssignClassAdapter(Context context, int resource,  @NonNull List<ClassItems> objects, String teacherID) {
+    String teacherID, code;
+    public AssignClassAdapter(Context context, int resource,  @NonNull List<ClassItems> objects, String teacherID,String code) {
         super(context, resource, objects);
         this.context = context;
         classList = objects;
         this.teacherID = teacherID;
+        this.code = code;
     }
 
     @NonNull
@@ -81,7 +82,7 @@ public class AssignClassAdapter extends ArrayAdapter<ClassItems> {
 
     private void removeItem(final int position,String classItem) {
 
-        mref= FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Teachers").child(teacherID).child("Classes");
+        mref= FirebaseDatabase.getInstance().getReference("Admins").child("AD_"+code).child("Teachers").child(teacherID).child("Classes");
         mref.child(classItem).removeValue();
 
         classList.remove(position);
