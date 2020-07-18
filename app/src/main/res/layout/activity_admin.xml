@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.AdminActivity">
-  
+    tools:context=".admin.AdminActivity"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -40,18 +41,20 @@
 
     </LinearLayout>
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="50dp"
+        android:background="@drawable/round_corner_bg"
+        android:layout_height="200dp">
     <Button
         android:id="@+id/addStudents"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="274dp"
-        android:layout_marginBottom="269dp"
         android:text="@string/add_student"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="147dp" />
+       />
 
     <Button
         android:id="@+id/editStudents"
@@ -59,13 +62,17 @@
         android:layout_height="100dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginBottom="269dp"
         android:text="@string/edit_students"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="147dp" />
+        />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/signout"/>
+    </LinearLayout>
 
 
-
-</RelativeLayout>
+</LinearLayout>

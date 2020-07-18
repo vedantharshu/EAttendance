@@ -49,9 +49,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onClick(View v) {
 
-                if(item.equals("Admin"))
-                    startActivity(new Intent(LoginActivity.this, AdminActivity.class));
-                else if(item.equals("Teacher")) {
+                if(item.equals("Teacher")) {
                     uname=username.getText().toString();
                     pass=password.getText().toString();
                     String[] s=uname.split("_");

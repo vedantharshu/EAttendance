@@ -10,10 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".UpdateActivity"></activity>
+        <activity android:name=".authentication.ForgotPasswordActivity"></activity>
+        <activity android:name=".authentication.SignUpActivity" />
+        <activity android:name=".authentication.AdminAuth" />
+        <activity android:name=".UserType" />
+        <activity android:name=".admin.students.EditStudent" />
         <activity android:name=".admin.teachers.RemoveTeacher" />
         <activity android:name=".admin.teachers.AssignClasses" />
         <activity android:name=".teacher.AttendanceListActivity" />
-        <activity android:name=".admin.AddStudent" />
+        <activity android:name=".admin.students.AddStudent" />
         <activity android:name=".admin.teachers.AddTeachers" />
         <activity android:name=".student.StudentActivity" />
         <activity android:name=".teacher.TeacherActivity" />
@@ -26,6 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
