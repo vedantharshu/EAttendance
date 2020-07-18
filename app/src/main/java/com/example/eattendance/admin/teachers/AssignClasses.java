@@ -35,7 +35,6 @@ public class AssignClasses extends AppCompatActivity {
     TextView msg ;
     String teacherID;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
