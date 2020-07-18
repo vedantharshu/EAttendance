@@ -29,11 +29,12 @@ public class addClassDialog  extends AppCompatDialogFragment {
     public EditText subject;
     public TextView t1,t2;
     public Spinner selectClass, selectSection;
-    DatabaseReference mref ,mref1;
-    String classValue , sectionValue, teacherID;
+    DatabaseReference mref;
+    String classValue , sectionValue, teacherID,s,code;
 
-    public addClassDialog(String teacherID) {
+    public addClassDialog(String teacherID ,String code) {
         this.teacherID = teacherID;
+        this.code = code;
     }
 
     @NonNull
@@ -92,33 +93,26 @@ public class addClassDialog  extends AppCompatDialogFragment {
 
         Toast.makeText(getContext(),
                 teacherID+ " " +classValue+sectionValue + " " + subjectName, Toast.LENGTH_SHORT).show();
-        mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_201").child("Teachers").child(teacherID)
+        mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_"+code).child("Teachers").child(teacherID)
                 .child("Classes");
 
-        //mref.child(classValue+sectionValue).setValue(subjectName);
+        mref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(classValue+sectionValue)){
+                    s = dataSnapshot.child(classValue+sectionValue).getValue().toString();
+                    s = s + " " + subjectName;
+                }
+                else{
+                    s=subjectName;
+                }
+                mref.child(classValue+sectionValue).setValue(s);
+            }
 
-        mref1 = mref.child(classValue+sectionValue);
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-//        mref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                if (dataSnapshot.hasChild(classValue+sectionValue)){
-//
-//                    String s = dataSnapshot.child(classValue+sectionValue).getValue().toString();
-//                    mref1.setValue(s + " " + subjectName);
-//                }
-//                else{
-//
-//                }
-//            }
-//
-//            mref.child(classValue+sectionValue).setValue(subjectName);
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+            }
+        });
     }
 }
