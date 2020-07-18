@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.eattendance.backendAdmin.StudentDetail;
 import com.example.eattendance.teacher.AttendanceItem;
 import com.example.eattendance.teacher.AttendanceListActivity;
 import com.example.eattendance.teacher.AttendanceListAdapter;
@@ -51,8 +52,7 @@ public class UpdateActivity extends AppCompatActivity {
             }
         listView = findViewById(R.id.attendanceLv);
         mref = FirebaseDatabase.getInstance().getReference("Admins").child(adminID);
-        //mref1 =FirebaseDatabase.getInstance().getReference("Admins").child(adminID).child("Students").child(class_value);
-        //mref2= FirebaseDatabase.getInstance().getReference("Admins").child(adminID).child("Students").child(class_value);
+        mref1 = FirebaseDatabase.getInstance().getReference("Admins").child(adminID).child("Attendance").child(date).child(class_value).child(lecture).child(subject);
         studentList = new ArrayList<>();
 
         mref.addValueEventListener(new ValueEventListener() {
@@ -60,7 +60,6 @@ public class UpdateActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 studentList.clear();
-                i =1;
                 for(DataSnapshot data: dataSnapshot.child("Attendance").child(date).child(class_value).child(lecture).child(subject).getChildren()){
                     if(data.getValue().toString().equals("absent")){
                         mark = false;
@@ -71,11 +70,10 @@ public class UpdateActivity extends AppCompatActivity {
                     st = data.getKey();
 
                     stuname=dataSnapshot.child("Students").child(class_value).child(st).child("username").getValue().toString();
-                    sn=stuname.split("\\s",2);
+                    sn=stuname.split(" ");
                     //Toast.makeText(UpdateActivity.this, sn[1], Toast.LENGTH_LONG).show();
 
-                    studentList.add(new AttendanceItem(Integer.toString(i),sn[1],mark));
-                    ++i;
+                    studentList.add(new AttendanceItem(sn[0],sn[1],mark));
                 }
                 adapter=new AttendanceListAdapter(UpdateActivity.this,R.layout.activity_attendance_list,studentList);
                 listView.setAdapter(adapter);
@@ -91,56 +89,53 @@ public class UpdateActivity extends AppCompatActivity {
 
     private void checkButtonClick() {
         submit = findViewById(R.id.submit_attenBTN);
+        mref2 = mref.child("Students").child(class_value);
         submit.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
+                /*StringBuffer responseText = new StringBuffer();
                 responseText.append("The following were selected...\n");
-                mref.addValueEventListener(new ValueEventListener() {
+                for(int i=0;i<studentList.size();i++){
+                    AttendanceItem attendance = studentList.get(i);
+                    if(attendance.isSelected()){
+                        mref1.child("201_ST_"+class_value+"_"+attendance.getRollno()).setValue("present");
+                        responseText.append("\n" + attendance.getName());
+                    }
+                    else if(!attendance.isSelected()){
+                        mref1.child("201_ST_"+class_value+"_"+attendance.getRollno()).setValue("absent");
+
+                        mref2.child("201_ST_"+class_value+"_"+attendance.getRollno()).child("absent").setValue(i+10);
+                    }
+                }
+
+                Toast.makeText(getApplicationContext(),
+                        responseText, Toast.LENGTH_LONG).show();*/
+
+                mref2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(int i=0;i<studentList.size();i++){
-                            AttendanceItem attendance = studentList.get(i);
-                            int x=i+1;
-                            String n=String.valueOf(x);
-                            if(attendance.isSelected()){
-                                mref.child(adminID+"_ST_"+class_value+"_"+n).setValue("present");
-                                //Toast.makeText(UpdateActivity.this, adminID+"_ST_"+class_value+"_"+n, Toast.LENGTH_LONG).show();
-                                long p=(long)dataSnapshot.child("Students").child(class_value).child(st).child("present").getValue();
-                                p++;
-                                mref.child("Students").child(class_value).child(st).child("present").setValue(p);
-                                responseText.append("\n" + attendance.getName());
+                        int in=0;
+                        for(DataSnapshot data: dataSnapshot.getChildren()){
+                            StudentDetail ob = data.getValue(StudentDetail.class);
+                            AttendanceItem at =studentList.get(in);
+                            ++in;
+                            if(at.isSelected()){
+                                int n = ob.getPresent();
+                                mref2.child(data.getKey()).child("present").setValue(++n);
                             }
-                            else if(!attendance.isSelected()){
-                                mref.child(adminID+"_ST_"+class_value+"_"+n).setValue("absent");
-                                long a=(long)dataSnapshot.child("Students").child(class_value).child(st).child("present").getValue();
-                                a++;
-                                mref.child("Students").child(class_value).child(st).child("present").setValue(a);
+                            else if (!at.isSelected()){
+                                int n = ob.getAbsent();
+                                mref2.child(data.getKey()).child("absent").setValue(++n);
                             }
+
                         }
-
-                        //Toast.makeText(getApplicationContext(),responseText, Toast.LENGTH_LONG).show();
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
-
-                startActivity(new Intent(UpdateActivity.this,TeacherActivity.class));
-                finish();
-
             }
-
         });
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(UpdateActivity.this, TeacherActivity.class));
-        finish();
     }
 }

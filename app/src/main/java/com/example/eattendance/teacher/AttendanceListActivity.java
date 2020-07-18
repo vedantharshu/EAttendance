@@ -177,9 +177,5 @@ public class AttendanceListActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
-
     }
 }

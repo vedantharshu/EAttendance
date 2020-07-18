@@ -3,7 +3,9 @@ package com.example.eattendance.backendAdmin;
 public class StudentDetail {
     String username, password;
     int absent, present;
+    public  StudentDetail(){
 
+    }
     public StudentDetail(String username, String password, int absent, int present) {
         this.username = username;
         this.password = password;

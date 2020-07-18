@@ -247,6 +247,7 @@ public class TeacherActivity extends AppCompatActivity {
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 date= datePicker.getDayOfMonth()+"-"+ (datePicker.getMonth() + 1)+"-"+datePicker.getYear();
                 Intent intent=new Intent(TeacherActivity.this, UpdateActivity.class);
                 intent.putExtra("adminID",adminID);
