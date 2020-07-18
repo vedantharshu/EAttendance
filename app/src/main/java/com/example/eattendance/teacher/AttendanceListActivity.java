@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.eattendance.R;
+import com.example.eattendance.backendAdmin.StudentDetail;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +36,7 @@ public class AttendanceListActivity extends AppCompatActivity {
     private String adminID;
     ArrayList<AttendanceItem> studentList;
     private FirebaseDatabase database;
-    private DatabaseReference myRef,myRef2;
+    private DatabaseReference myRef,myRef1,myRef2;
     private String schoolID;
     private String rollNo;
     private ArrayList<String> IDs;
@@ -129,6 +130,7 @@ public class AttendanceListActivity extends AppCompatActivity {
                 IDs=new ArrayList<>();
                 pres_abs=new ArrayList<>();
 
+                myRef2 = myRef.child("Students").child(class_value);
 
                 List<AttendanceItem> atList =adapter.attendanceList;
                 for(int i=0;i<atList.size();i++){
@@ -152,25 +154,46 @@ public class AttendanceListActivity extends AppCompatActivity {
                 present.append("\nTotal Present: "+String.valueOf(presentCount));
 
 
-                myRef2=myRef.child("Attendance").child(date).child(class_value).child(lecture).child(subject);
-                myRef2.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                myRef1=myRef.child("Attendance").child(date).child(class_value).child(lecture).child(subject);
 
 
-                        for(int i=0;i<IDs.size();i++)
-                        {
-                            myRef2.child(IDs.get(i)).setValue(pres_abs.get(i));
+
+                        for(int i=0;i<IDs.size();i++) {
+                            myRef1.child(IDs.get(i)).setValue(pres_abs.get(i));
                         }
 
-                        return;
-                    }
+                myRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        int in=0;
+                        for(DataSnapshot data: dataSnapshot.getChildren()){
+                            StudentDetail ob = data.getValue(StudentDetail.class);
+                            AttendanceItem at =studentList.get(in);
+                            ++in;
+                            if(at.isSelected()){
+                                int n = ob.getPresent();
 
+
+                                    myRef2.child(data.getKey()).child("present").setValue(n+1);
+
+
+                            }
+                            else if (!at.isSelected()) {
+                                int n = ob.getAbsent();
+
+
+                                    myRef2.child(data.getKey()).child("absent").setValue(n+1);
+
+
+                            }
+                        }
+                    }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
+
 
                 //Toast.makeText(getApplicationContext(),present, Toast.LENGTH_LONG).show();
 

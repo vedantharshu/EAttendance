@@ -31,6 +31,8 @@ public class UpdateActivity extends AppCompatActivity {
     private Button submit;
     private AttendanceListAdapter adapter = null;
     private ArrayList<AttendanceItem> studentList;
+    private ArrayList<Boolean> fetchedList;
+
     private DatabaseReference mref, mref1,mref2;
     private String stuname;
     private String[] sn;
@@ -50,6 +52,7 @@ public class UpdateActivity extends AppCompatActivity {
                 subject=extras.getString("subject");
                 lecture=extras.getString("lecture");
             }
+            fetchedList=new ArrayList<>();
         listView = findViewById(R.id.attendanceLv);
         mref = FirebaseDatabase.getInstance().getReference("Admins").child(adminID);
         mref1 = FirebaseDatabase.getInstance().getReference("Admins").child(adminID).child("Attendance").child(date).child(class_value).child(lecture).child(subject);
@@ -63,9 +66,11 @@ public class UpdateActivity extends AppCompatActivity {
                 for(DataSnapshot data: dataSnapshot.child("Attendance").child(date).child(class_value).child(lecture).child(subject).getChildren()){
                     if(data.getValue().toString().equals("absent")){
                         mark = false;
+                        fetchedList.add(false);
                     }
                     else if(data.getValue().toString().equals("present")){
                         mark = true;
+                        fetchedList.add(true);
                     }
                     st = data.getKey();
 
@@ -93,7 +98,7 @@ public class UpdateActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*StringBuffer responseText = new StringBuffer();
+                StringBuffer responseText = new StringBuffer();
                 responseText.append("The following were selected...\n");
                 for(int i=0;i<studentList.size();i++){
                     AttendanceItem attendance = studentList.get(i);
@@ -104,12 +109,11 @@ public class UpdateActivity extends AppCompatActivity {
                     else if(!attendance.isSelected()){
                         mref1.child("201_ST_"+class_value+"_"+attendance.getRollno()).setValue("absent");
 
-                        mref2.child("201_ST_"+class_value+"_"+attendance.getRollno()).child("absent").setValue(i+10);
+                       
                     }
                 }
 
-                Toast.makeText(getApplicationContext(),
-                        responseText, Toast.LENGTH_LONG).show();*/
+                //Toast.makeText(getApplicationContext(),responseText, Toast.LENGTH_LONG).show();
 
                 mref2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -121,13 +125,20 @@ public class UpdateActivity extends AppCompatActivity {
                             ++in;
                             if(at.isSelected()){
                                 int n = ob.getPresent();
-                                mref2.child(data.getKey()).child("present").setValue(++n);
+                                int m = ob.getAbsent();
+                                if(fetchedList.get(in-1)==false) {
+                                    mref2.child(data.getKey()).child("present").setValue(n+1);
+                                    mref2.child(data.getKey()).child("absent").setValue(m-1);
+                                }
                             }
-                            else if (!at.isSelected()){
+                            else if (!at.isSelected()) {
                                 int n = ob.getAbsent();
-                                mref2.child(data.getKey()).child("absent").setValue(++n);
+                                int m = ob.getPresent();
+                                if(fetchedList.get(in-1)==true) {
+                                    mref2.child(data.getKey()).child("absent").setValue(n+1);
+                                    mref2.child(data.getKey()).child("present").setValue(m-1);
+                                }
                             }
-
                         }
                     }
                     @Override
