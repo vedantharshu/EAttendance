@@ -75,13 +75,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.335" />
 
-    <EditText
+    <Spinner
         android:id="@+id/idStudentRoll"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/round_corner_bg"
         android:ems="10"
-        android:inputType="number"
+        android:entries="@array/rollnumber_choice"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,13 +90,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.431" />
 
-    <EditText
+    <Spinner
         android:id="@+id/idStudentClass"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/round_corner_bg"
         android:ems="10"
-        android:inputType="number"
+        android:entries="@array/class_choice"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,14 +105,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.429" />
 
-    <EditText
+    <Spinner
         android:id="@+id/idStudentSection"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="48dp"
         android:background="@drawable/round_corner_bg"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:entries="@array/section_choice"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

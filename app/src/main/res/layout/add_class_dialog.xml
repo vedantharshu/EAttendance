@@ -106,15 +106,14 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
 
-    <EditText
+    <Spinner
         android:id="@+id/subjectEntry"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/round_corner_bg"
-        android:ems="10"
-        android:inputType="textPersonName"
         android:layout_marginTop="10dp"
         android:textAlignment="center"
+        android:entries="@array/subject_choice"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.422"

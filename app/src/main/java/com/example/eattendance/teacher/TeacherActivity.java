@@ -133,7 +133,7 @@ public class TeacherActivity extends AppCompatActivity {
                         Object item = parent.getItemAtPosition(position);
                         cl=item.toString();
                         subjects=new ArrayList<>();
-                        String[] subs=dataSnapshot.child(cl).getValue().toString().split(" ");
+                        String[] subs=dataSnapshot.child(cl).getValue().toString().split("\\r?\\n");
 
                         for(String x:subs)
                         {

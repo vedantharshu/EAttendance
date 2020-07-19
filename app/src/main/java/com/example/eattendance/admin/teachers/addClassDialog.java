@@ -26,11 +26,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class addClassDialog  extends AppCompatDialogFragment {
 
-    public EditText subject;
+    public Spinner subject;
     public TextView t1,t2;
     public Spinner selectClass, selectSection;
     DatabaseReference mref;
-    String classValue , sectionValue, teacherID,s,code;
+    String classValue , sectionValue, subjectValue, teacherID, s, code;
 
     public addClassDialog(String teacherID ,String code) {
         this.teacherID = teacherID;
@@ -74,6 +74,18 @@ public class addClassDialog  extends AppCompatDialogFragment {
             }
         });
 
+        subject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                subjectValue = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         builder.setView(view).setTitle("Add New Class").setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -82,7 +94,7 @@ public class addClassDialog  extends AppCompatDialogFragment {
         }).setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                addClass(classValue, sectionValue, subject.getText().toString());
+                addClass(classValue, sectionValue, subjectValue);
             }
         });
 
@@ -101,7 +113,7 @@ public class addClassDialog  extends AppCompatDialogFragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild(classValue+sectionValue)){
                     s = dataSnapshot.child(classValue+sectionValue).getValue().toString();
-                    s = s + " " + subjectName;
+                    s = s + "\n" + subjectName;
                 }
                 else{
                     s=subjectName;
