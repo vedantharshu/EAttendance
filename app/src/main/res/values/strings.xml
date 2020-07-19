@@ -53,4 +53,6 @@
     <string name="remove_teacher">REMOVE TEACHER</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
+    <string name="te">TE</string>
+    <string name="teacherID">ID</string>
 </resources>

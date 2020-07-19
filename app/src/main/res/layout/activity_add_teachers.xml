@@ -113,7 +113,7 @@
         android:layout_height="40dp"
         android:background="@drawable/round_corner_bg"
         android:gravity="center"
-        android:text="TE"
+        android:text="@string/te"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
