@@ -10,10 +10,10 @@
 
     <TextView
         android:id="@+id/textSno1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
         android:layout_weight="40"
-        android:gravity="center"
         android:textColor="@color/black"
         android:textAlignment="center"
         android:textSize="18dp">
@@ -22,10 +22,9 @@
 
     <TextView
         android:id="@+id/textSubjectName"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
         android:layout_weight="30"
-        android:gravity="center"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18dp">
@@ -34,10 +33,9 @@
 
     <TextView
         android:id="@+id/textAttendanceFlag"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:layout_weight="30"
-        android:gravity="center"
         android:textColor="@color/black"
         android:textAlignment="center"
         android:textSize="18dp">
