@@ -10,9 +10,8 @@
 
     <TextView
         android:id="@+id/textSno"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="40"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/black"
         android:textAlignment="center"
@@ -22,9 +21,9 @@
 
     <TextView
         android:id="@+id/textClass"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="30"
+        android:layout_width="60dp"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -34,9 +33,8 @@
 
     <TextView
         android:id="@+id/textSubjects"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="30"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/black"
         android:textAlignment="center"

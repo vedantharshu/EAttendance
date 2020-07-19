@@ -55,4 +55,5 @@
     <string name="username">Username</string>
     <string name="te">TE</string>
     <string name="teacherID">ID</string>
+    <string name="search">SEARCH</string>
 </resources>

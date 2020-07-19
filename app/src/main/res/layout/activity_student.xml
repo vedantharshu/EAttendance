@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -35,7 +35,11 @@
 <!--        android:layout_marginTop="10dp"-->
 <!--        android:textStyle="bold"-->
 <!--        android:textSize="18dp"/>-->
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +47,6 @@
         android:textColor="@color/colorText"
         android:layout_marginLeft="20dp"
         android:textSize="25dp"
-        android:layout_marginTop="15dp"
         android:textColorHighlight="@color/black"
         android:textStyle="italic">
 
@@ -54,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         app:cardBackgroundColor="@color/lightestGreen"
         app:cardCornerRadius="10dp">
@@ -98,7 +101,6 @@
         android:id="@+id/todaysAttendanceCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/overallAttendanceCard"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
@@ -127,7 +129,7 @@
         <ListView
             android:id="@+id/ListViewTodaysAttendance"
             android:layout_marginTop="50dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </androidx.cardview.widget.CardView>
@@ -171,5 +173,9 @@
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-</RelativeLayout>
+</LinearLayout>
+</ScrollView>

@@ -32,7 +32,7 @@ public class AssignClasses extends AppCompatActivity {
     ListView mlist;
     ArrayList<ClassItems> ClassesList;
     AssignClassAdapter classAdapter = null;
-    TextView msg ;
+    TextView msg ,scode;
     String teacherID, code;
 
     @Override
@@ -45,7 +45,7 @@ public class AssignClasses extends AppCompatActivity {
         assignClass = findViewById(R.id.assignNewClass);
         msg = findViewById(R.id.totalClasses);
         mlist = findViewById(R.id.listViewClasses);
-
+        scode = findViewById(R.id.scode);
         assignClass.setVisibility(View.INVISIBLE);
 
         Bundle extras = getIntent().getExtras();
@@ -54,16 +54,16 @@ public class AssignClasses extends AppCompatActivity {
             code = extras.getString("code");
         }
 
-
+        scode.setText(code);
         search.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-            Toast.makeText(getApplicationContext(),teacherId.getText().toString()+"is selected" ,Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),code+"_TE_"+teacherId.getText().toString()+"is selected" ,Toast.LENGTH_LONG).show();
 
             mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_"+code).child("Teachers");
 
-            teacherID = teacherId.getText().toString();
+            teacherID = code+"_TE_"+teacherId.getText().toString();
             mref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -116,7 +116,7 @@ public class AssignClasses extends AppCompatActivity {
                             ClassesList.clear();
                             int i = 1;
                             for(DataSnapshot data: dataSnapshot1.getChildren()){
-                                ClassesList.add(new ClassItems(data.getKey().toString(), data.getValue().toString(), String.valueOf(i++)));
+                                ClassesList.add(new ClassItems(data.getKey(), data.getValue().toString(), String.valueOf(i++)));
                             }
                             classAdapter= new AssignClassAdapter(AssignClasses.this, R.layout.assign_classes_list,ClassesList, teacherID,code);
                             mlist.setAdapter(classAdapter);
