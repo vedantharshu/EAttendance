@@ -37,7 +37,7 @@
     <string name="student">STUDENT</string>
     <string name="teacher">TEACHER</string>
     <string name="new_user">New User? Sign Up Here</string>
-    <string name="email">"   Email "</string>
+    <string name="email">"Email "</string>
     <string name="school_name">Enter School Name</string>
     <string name="enter_email">Enter School Email Address</string>
     <string name="enter_password">Enter Password (Min. 8 Characters)</string>
@@ -48,7 +48,9 @@
     <string name="registeredId">Enter Registered Email Id</string>
     <string name="send_link">Send Link</string>
     <string name="signout">SIGN OUT</string>
-    <string name="enter_school_code2">"   School Code"</string>
+    <string name="enter_school_code2">"School Code"</string>
     <string name="enter_teacherID">Enter Teacher ID</string>
     <string name="remove_teacher">REMOVE TEACHER</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
 </resources>
