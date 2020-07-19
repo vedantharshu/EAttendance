@@ -48,7 +48,7 @@ public class UpdateActivity extends AppCompatActivity {
             fetchedList=new ArrayList<>();
         listView = findViewById(R.id.attendanceLv);
         mref = FirebaseDatabase.getInstance().getReference("Admins").child(adminID);
-        mref1 = FirebaseDatabase.getInstance().getReference("Admins").child(adminID).child("Attendance").child(date).child(class_value).child(lecture).child(subject);
+        mref1 = FirebaseDatabase.getInstance().getReference("Admins").child(adminID).child("Attendance").child(date).child(class_value).child(lecture+"_"+subject);
         studentList = new ArrayList<>();
 
         mref.addValueEventListener(new ValueEventListener() {
@@ -56,7 +56,7 @@ public class UpdateActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 studentList.clear();
-                for(DataSnapshot data: dataSnapshot.child("Attendance").child(date).child(class_value).child(lecture).child(subject).getChildren()){
+                for(DataSnapshot data: dataSnapshot.child("Attendance").child(date).child(class_value).child(lecture+"_"+subject).getChildren()){
                     if(data.getValue().toString().equals("absent")){
                         mark = false;
                         fetchedList.add(false);

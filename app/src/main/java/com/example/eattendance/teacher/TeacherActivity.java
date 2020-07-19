@@ -102,9 +102,6 @@ public class TeacherActivity extends AppCompatActivity {
         lecture_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         lectureSpinner.setAdapter(lecture_adapter);
 
-
-
-
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Admins").child(adminID).child("Teachers").child(uname);
 
@@ -149,9 +146,6 @@ public class TeacherActivity extends AppCompatActivity {
                         );
                         subject_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         subjectSpinner.setAdapter(subject_adapter);
-
-
-
                     }
 
                     @Override
@@ -208,7 +202,7 @@ public class TeacherActivity extends AppCompatActivity {
                 myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                        if(dataSnapshot1.child("Attendance").child(date).child(cl).hasChild("Lec_"+selectedLec))
+                        if(dataSnapshot1.child("Attendance").child(date).child(cl).hasChild("Lec_"+selectedLec+"_"+selectedSub))
                         {
                             Toast.makeText(TeacherActivity.this, "Selected lecture has an entry.\nClick on Update to update.", Toast.LENGTH_LONG).show();
                         }

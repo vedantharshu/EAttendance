@@ -90,12 +90,10 @@ public class AttendanceListActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 studentList=new ArrayList<>();
-                int i=1;
                 for(DataSnapshot stu:dataSnapshot.child("Students").child(class_value).getChildren())
                 {
-                    String[] sn=stu.child("username").getValue().toString().split("\\s",2);
-                    studentList.add(new AttendanceItem(Integer.toString(i),sn[1],false));
-                            i++;
+                    String[] sn=stu.child("username").getValue().toString().split(" ");
+                    studentList.add(new AttendanceItem(sn[0],sn[1],false));
                 }
                 adapter=new AttendanceListAdapter(AttendanceListActivity.this,R.layout.activity_attendance_list,studentList);
                 listView.setAdapter(adapter);
@@ -152,7 +150,7 @@ public class AttendanceListActivity extends AppCompatActivity {
 
                 }
                 present.append("\nTotal Present: "+String.valueOf(presentCount));
-                myRef1=myRef.child("Attendance").child(date).child(class_value).child(lecture).child(subject);
+                myRef1=myRef.child("Attendance").child(date).child(class_value).child(lecture+"_"+subject);
                         for(int i=0;i<IDs.size();i++) {
                             myRef1.child(IDs.get(i)).setValue(pres_abs.get(i));
                         }
