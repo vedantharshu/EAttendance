@@ -11,10 +11,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.eattendance.admin.AdminActivity;
+import com.example.eattendance.student.PasswordStudent;
 import com.example.eattendance.student.StudentActivity;
+import com.example.eattendance.teacher.PasswordTeacher;
 import com.example.eattendance.teacher.TeacherActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,9 +31,10 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     EditText username,password;
     String uname="",pass="";
     String TAG="Login_Activity";
-    DatabaseReference myRef ;
+    DatabaseReference myRef, mref;
     FirebaseDatabase database;
-    String adminID;
+    String adminID, standard;
+    TextView forgot_password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         login=(Button)findViewById(R.id.loginBTN);
         username=(EditText)findViewById(R.id.usernameET);
         password=(EditText)findViewById(R.id.passwordET);
-
+        forgot_password = findViewById(R.id.forgot_password);
         database = FirebaseDatabase.getInstance();
 
 
@@ -60,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists())
+                            if(dataSnapshot.child("Teachers").child(uname).exists())
                             {
                                 if((dataSnapshot.child("Teachers").child(uname).child("Password").getValue().toString()).equals(pass))
                                 {
@@ -90,8 +93,60 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                         }
                     });
                 }
-                else if(item.equals("Student"))
-                    startActivity(new Intent(LoginActivity.this, StudentActivity.class));
+                else if(item.equals("Student")) {
+                    uname=username.getText().toString().trim();//username 210_ST_2A_14
+                    pass=password.getText().toString();//Check
+                    String[] s=uname.split("_");
+                    String code=s[0];//210
+                    adminID="AD_"+code;//AD_210
+                    standard = s[2];
+                    Toast.makeText(LoginActivity.this, adminID, Toast.LENGTH_SHORT).show();
+                    mref = FirebaseDatabase.getInstance().getReference("Admins").child(adminID).child("Students");
+                    mref.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.hasChild(standard)){
+                                if(dataSnapshot.child(standard).hasChild(uname)){
+                                    if(dataSnapshot.child(standard).child(uname).child("password").getValue().toString().equals(pass)){
+                                        Intent  intent = new Intent(LoginActivity.this, StudentActivity.class);
+                                        intent.putExtra("studId",uname);
+                                        intent.putExtra("class",standard);
+                                        intent.putExtra("adminID",adminID);
+                                        startActivity(intent);
+                                    }
+                                    else{
+                                        Toast.makeText(LoginActivity.this, "Wrong Password!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                else{
+                                    Toast.makeText(LoginActivity.this, "Invalid Username!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else{
+                                Toast.makeText(LoginActivity.this, "Invalid Credentials!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            }
+        });
+
+        //forgot password part
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(item.equals("Student")){
+                    Intent x = new Intent(LoginActivity.this, PasswordStudent.class);
+                    startActivity(x);
+                }
+                else if(item.equals("Teacher")){
+                    Intent x = new Intent(LoginActivity.this, PasswordTeacher.class);
+                    startActivity(x);
+                }
             }
         });
     }

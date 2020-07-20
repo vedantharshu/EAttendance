@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.eattendance.LoginActivity;
 import com.example.eattendance.R;
+import com.example.eattendance.backendAdmin.TeacherDetail;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,7 +43,7 @@ public class TeacherActivity extends AppCompatActivity {
     private String selectedSub;
     private String selectedLec;
     private  String date;
-
+    private Button logout;
     private Button mark;
     private Button updateBtn;
 
@@ -51,21 +52,20 @@ public class TeacherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
+        classSpinner = findViewById(R.id.class_spinner);
+        subjectSpinner = findViewById(R.id.subject_spinner);
+        lectureSpinner = findViewById(R.id.lecture_spinner);
+        datePicker = findViewById(R.id.datepicker_teacher);
+        logout = findViewById(R.id.logout);
 
-
-
-        classSpinner = (Spinner) findViewById(R.id.class_spinner);
-
-        subjectSpinner = (Spinner) findViewById(R.id.subject_spinner);
-
-        lectureSpinner=(Spinner)findViewById(R.id.lecture_spinner);
-
-        datePicker=(DatePicker)findViewById(R.id.datepicker_teacher);
-
-
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TeacherActivity.this, LoginActivity.class));
+            }
+        });
 
         classes=new ArrayList<>();
-
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -82,7 +82,6 @@ public class TeacherActivity extends AppCompatActivity {
 
         }
         //Toast.makeText(this, uname+" "+adminID, Toast.LENGTH_LONG).show();
-
         lectures=new ArrayList<>();
         lectures.add("1");
         lectures.add("2");
@@ -186,10 +185,6 @@ public class TeacherActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         myRef1=database.getReference("Admins").child(adminID);
         mark=(Button)findViewById(R.id.mark_attendanceBTN);
         mark.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +192,6 @@ public class TeacherActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 date= datePicker.getDayOfMonth()+"-"+ (datePicker.getMonth() + 1)+"-"+datePicker.getYear();
-
 
                 myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -210,27 +204,18 @@ public class TeacherActivity extends AppCompatActivity {
                         {
                             //Toast.makeText(TeacherActivity.this, date+" "+cl+" "+selectedLec, Toast.LENGTH_LONG).show();
                             Intent intent=new Intent(TeacherActivity.this, AttendanceListActivity.class);
-
                             intent.putExtra("adminID",adminID);
                             intent.putExtra("class",cl);
                             intent.putExtra("date",date);
                             intent.putExtra("subject",selectedSub);
                             intent.putExtra("lecture","Lec_"+selectedLec);
                             startActivity(intent);
-
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
-
-
-
-
-
             }
         });
 
@@ -252,10 +237,6 @@ public class TeacherActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
     }
     @Override
     public void onBackPressed() {
@@ -282,6 +263,4 @@ public class TeacherActivity extends AppCompatActivity {
         super.onResume();
 
     }
-
-
 }

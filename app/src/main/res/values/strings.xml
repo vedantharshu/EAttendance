@@ -56,4 +56,5 @@
     <string name="te">TE</string>
     <string name="teacherID">ID</string>
     <string name="search">SEARCH</string>
+    <string name="save">SAVE CHANGES</string>
 </resources>
