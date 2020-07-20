@@ -24,8 +24,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        forgot_email = (EditText)findViewById(R.id.user_forgot_email);
-        reset_btn = (Button)findViewById(R.id.reset_btn);
+        forgot_email = findViewById(R.id.user_forgot_email);
+        reset_btn = findViewById(R.id.reset_btn);
         reset_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,7 +36,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
     private void PasswordResetEmail(final String email) {
         if(email.equals("")){
-            Toast.makeText(ForgotPasswordActivity.this, "Enter Email!! ", Toast.LENGTH_LONG).show();
+            forgot_email.setError("Enter Email");
         }
         else {
             mAuth.sendPasswordResetEmail(email)

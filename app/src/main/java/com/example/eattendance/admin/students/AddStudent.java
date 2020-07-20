@@ -45,7 +45,7 @@ public class AddStudent extends AppCompatActivity {
         if (extras != null) {
             code = extras.getString("code");
         }
-        Log.d("TAG2", "onCreate: addstu"+code);
+
         addStudentClass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -95,7 +95,7 @@ public class AddStudent extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if(dataSnapshot.hasChild(sid)){
-                                    Toast.makeText(AddStudent.this, "Roll Number Already Assigned To "+dataSnapshot.child(sid).child("username").getValue().toString(),Toast.LENGTH_LONG).show();
+                                    Toast.makeText(AddStudent.this, "Roll Number Already Assigned To "+dataSnapshot.child(sid).child("username").getValue().toString(),Toast.LENGTH_SHORT).show();
                                 }
                                 else {
                                     mref2 = mref1.child(code+"_ST_"+standard+"_"+rollValue);
@@ -106,7 +106,7 @@ public class AddStudent extends AppCompatActivity {
                                             0);
                                     mref2.setValue(st);
                                     Toast.makeText(getApplicationContext(),
-                                            "Student Added Successfully", Toast.LENGTH_LONG).show();
+                                            "Student Added Successfully", Toast.LENGTH_SHORT).show();
                                 }
                             }
 

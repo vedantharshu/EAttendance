@@ -58,18 +58,12 @@ public class AdminAuth extends AppCompatActivity {
                 pwd = input_password.getText().toString().trim();
                 if(uname.equals("")){
                     input_email.setError("Enter Email");
-                    Toast.makeText(AdminAuth.this, "Enter Email!!",
-                            Toast.LENGTH_SHORT).show();
                 }
                 else if(pwd.equals("")){
                     input_password.setError("Enter Password");
-                    Toast.makeText(AdminAuth.this, "Enter Password!!",
-                            Toast.LENGTH_SHORT).show();
                 }
                 else if(s.equals("")){
                     schoolCode.setError("Enter School Code");
-                    Toast.makeText(AdminAuth.this, "Enter School Code!!",
-                            Toast.LENGTH_SHORT).show();
                 }
                 else {
                     mref1.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -127,7 +121,7 @@ public class AdminAuth extends AppCompatActivity {
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(AdminAuth.this, "Authentication failed: " + task.getException(),
+                                Toast.makeText(AdminAuth.this, "Authentication failed",
                                         Toast.LENGTH_SHORT).show();
                                 updateUI(null);
                             }
@@ -158,5 +152,6 @@ public class AdminAuth extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(AdminAuth.this, UserType.class));
+        finish();;
     }
 }

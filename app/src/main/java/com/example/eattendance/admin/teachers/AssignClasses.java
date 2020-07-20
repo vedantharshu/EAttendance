@@ -59,8 +59,6 @@ public class AssignClasses extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-            Toast.makeText(getApplicationContext(),code+"_TE_"+teacherId.getText().toString()+"is selected" ,Toast.LENGTH_LONG).show();
-
             mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_"+code).child("Teachers");
 
             teacherID = code+"_TE_"+teacherId.getText().toString();

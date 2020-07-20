@@ -20,7 +20,6 @@ public class todaysAttendanceAdapter extends ArrayAdapter<TodaysAttendanceItems>
 
     Context context;
     List<TodaysAttendanceItems> todaysAttendanceList;
-    DatabaseReference mref;
 
     public todaysAttendanceAdapter(Context context, int resource, @NonNull List<TodaysAttendanceItems> objects) {
         super(context, resource, objects);

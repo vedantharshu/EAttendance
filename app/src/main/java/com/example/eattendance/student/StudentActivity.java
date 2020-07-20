@@ -97,6 +97,7 @@ public class StudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StudentActivity.this, LoginActivity.class));
+                finish();
             }
         });
 
@@ -135,21 +136,9 @@ public class StudentActivity extends AppCompatActivity {
                     dateFormat = new SimpleDateFormat("dd-M-yyyy");
                     date1 = dateFormat.format(calendar.getTime());
                 }
-                Toast.makeText(StudentActivity.this, date1,Toast.LENGTH_LONG).show();
+
                 if(btnFlag.equals("plus")){
-                    btnFlag2 = "plus";
-                    CheckAttendanceList.clear();
-                    TodaysAttendanceAdapter = new todaysAttendanceAdapter(StudentActivity.this, R.layout.todays_attendance_list, CheckAttendanceList);
-                    checkAttendancelist.setAdapter(TodaysAttendanceAdapter);
-                    checkAttendancebtn.setBackgroundResource(R.drawable.plus);
-                    ViewGroup.LayoutParams p1 = checkAttendancelist.getLayoutParams();
-                    p1.height = 0;
-                    checkAttendancelist.setLayoutParams(p1);
-                    ViewGroup.LayoutParams p = mList.getLayoutParams();
-                    p.height = 500;
-                    mList.setLayoutParams(p);
-                    todaysAttendancebtn.setBackgroundResource(R.drawable.minus);
-                    btnFlag = "minus";
+                    btnFlag2="minus";
                     showAttendance(date1, mList, TodaysAttendanceList);
                 }
                 else if(btnFlag.equals("minus")){
@@ -161,7 +150,6 @@ public class StudentActivity extends AppCompatActivity {
                     TodaysAttendanceAdapter = new todaysAttendanceAdapter(StudentActivity.this, R.layout.todays_attendance_list, TodaysAttendanceList);
                     mList.setAdapter(TodaysAttendanceAdapter);
                     todaysAttendancebtn.setBackgroundResource(R.drawable.plus);
-
                 }
             }
         });
@@ -186,8 +174,6 @@ public class StudentActivity extends AppCompatActivity {
                                     monthOfYear = monthOfYear + 1;
                                     toCheckDate = (dayOfMonth + "-" + monthOfYear + "-" + year);
                                     clicked = true;
-                                    Toast.makeText(getApplicationContext(),
-                                            toCheckDate, Toast.LENGTH_SHORT).show();
                                 }
                             }, year, month, day);
                     picker.show();
@@ -199,20 +185,8 @@ public class StudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (btnFlag2.equals("plus")) {
-                    btnFlag = "plus";
-                    TodaysAttendanceList.clear();
-                    TodaysAttendanceAdapter = new todaysAttendanceAdapter(StudentActivity.this, R.layout.todays_attendance_list, TodaysAttendanceList);
-                    mList.setAdapter(TodaysAttendanceAdapter);
-                    todaysAttendancebtn.setBackgroundResource(R.drawable.plus);
-                    ViewGroup.LayoutParams p2 = mList.getLayoutParams();
-                    p2.height = 0;
-                    mList.setLayoutParams(p2);
+                    btnFlag = "minus";
                     if (clicked) {
-                        checkAttendancebtn.setBackgroundResource(R.drawable.minus);
-                        btnFlag2 = "minus";
-                        ViewGroup.LayoutParams p = checkAttendancelist.getLayoutParams();
-                        p.height = 500;
-                        checkAttendancelist.setLayoutParams(p);
                         showAttendance(toCheckDate, checkAttendancelist, CheckAttendanceList);
                     } else {
                         Toast.makeText(getApplicationContext(),
@@ -245,6 +219,36 @@ public class StudentActivity extends AppCompatActivity {
                 list.clear();
                 int i = 1;
                 if(dataSnapshot.hasChild(date)) {
+                    if(btnFlag2.equals("plus")){
+                        btnFlag = "plus";
+                        TodaysAttendanceList.clear();
+                        TodaysAttendanceAdapter = new todaysAttendanceAdapter(StudentActivity.this, R.layout.todays_attendance_list, TodaysAttendanceList);
+                        mList.setAdapter(TodaysAttendanceAdapter);
+                        todaysAttendancebtn.setBackgroundResource(R.drawable.plus);
+                        ViewGroup.LayoutParams p2 = mList.getLayoutParams();
+                        p2.height = 0;
+                        mList.setLayoutParams(p2);
+                        checkAttendancebtn.setBackgroundResource(R.drawable.minus);
+                        btnFlag2 = "minus";
+                        ViewGroup.LayoutParams p = checkAttendancelist.getLayoutParams();
+                        p.height = 500;
+                        checkAttendancelist.setLayoutParams(p);
+                    }
+                    else if(btnFlag.equals("plus")){
+                        CheckAttendanceList.clear();
+                        TodaysAttendanceAdapter = new todaysAttendanceAdapter(StudentActivity.this, R.layout.todays_attendance_list, CheckAttendanceList);
+                        checkAttendancelist.setAdapter(TodaysAttendanceAdapter);
+                        checkAttendancebtn.setBackgroundResource(R.drawable.plus);
+                        ViewGroup.LayoutParams p1 = checkAttendancelist.getLayoutParams();
+                        p1.height = 0;
+                        checkAttendancelist.setLayoutParams(p1);
+                        btnFlag2= "plus";
+                        ViewGroup.LayoutParams p = mList.getLayoutParams();
+                        p.height = 500;
+                        mList.setLayoutParams(p);
+                        todaysAttendancebtn.setBackgroundResource(R.drawable.minus);
+                        btnFlag = "minus";
+                    }
                     for (DataSnapshot data : dataSnapshot.child(date).child(standard).getChildren()) {
                         String lec = data.getKey();
                         String flag = data.child(uname).getValue().toString();
@@ -267,7 +271,7 @@ public class StudentActivity extends AppCompatActivity {
 
     void changeAttendance(float average){
         attendanceValue = findViewById(R.id.attendanceValue);
-        attendanceValue.setText(String.valueOf(average)+"%");
+        attendanceValue.setText(average+"%");
         circularProgressBar = findViewById(R.id.circularProgressBar);
         circularProgressBar.setProgressWithAnimation(average, (long) 1000);
     }

@@ -42,7 +42,7 @@ public class TeacherActivity extends AppCompatActivity {
     private String cl;
     private String selectedSub;
     private String selectedLec;
-    private  String date;
+    private String date;
     private Button logout;
     private Button mark;
     private Button updateBtn;
@@ -62,6 +62,7 @@ public class TeacherActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(TeacherActivity.this, LoginActivity.class));
+                finish();
             }
         });
 
@@ -79,9 +80,8 @@ public class TeacherActivity extends AppCompatActivity {
         } else {
             uname= (String) savedInstanceState.getSerializable("user_name");
             adminID= (String) savedInstanceState.getSerializable("adminID");
-
         }
-        //Toast.makeText(this, uname+" "+adminID, Toast.LENGTH_LONG).show();
+
         lectures=new ArrayList<>();
         lectures.add("1");
         lectures.add("2");
@@ -115,7 +115,7 @@ public class TeacherActivity extends AppCompatActivity {
 
                     }
                 }
-                Log.d(TAG, "Value retreived..");
+
                 ArrayAdapter<String> class_adapter = new ArrayAdapter<String>(
                         TeacherActivity.this,
                         android.R.layout.simple_spinner_item,
@@ -152,12 +152,10 @@ public class TeacherActivity extends AppCompatActivity {
 
                     }
                 });
-                //Toast.makeText(TeacherActivity.this, classes.get(0), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d(TAG, "Could not get value");
             }
         });
 
@@ -198,7 +196,7 @@ public class TeacherActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
                         if(dataSnapshot1.child("Attendance").child(date).child(cl).hasChild("Lec_"+selectedLec+"_"+selectedSub))
                         {
-                            Toast.makeText(TeacherActivity.this, "Selected lecture has an entry.\nClick on Update to update.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TeacherActivity.this, "Selected lecture has an entry.\nClick on Update to update.", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -258,9 +256,4 @@ public class TeacherActivity extends AppCompatActivity {
         builder.show();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
 }
