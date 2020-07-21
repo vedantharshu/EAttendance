@@ -1,78 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".admin.AdminActivity"
+    android:background="@color/lightestGreen"
     android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:padding="50dp"
-        android:background="@drawable/round_corner_bg"
-        android:layout_height="200dp">
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:background="@color/lightestGreen"
+        android:layout_height="350dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TEACHERS"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textColor="#19434C"/>
 
         <Button
             android:id="@+id/addTeachers"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
             android:text="@string/add_teachers"
+            android:textColor="#fff"
+            android:background="@drawable/black_btn_bg"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginVertical="10dp"
              />
 
         <Button
             android:id="@+id/assignClassesbtn"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginVertical="10dp"
+            android:textColor="#fff"
+            android:background="@drawable/black_btn_bg"
+            android:textStyle="bold"
+            android:textSize="20dp"
             android:text="Assign Classes" />
 
         <Button
             android:id="@+id/removeTeacherbtn"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginVertical="10dp"
+            android:textColor="#fff"
+            android:background="@drawable/black_btn_bg"
+            android:textStyle="bold"
+            android:textSize="20dp"
             android:text="Remove Teacher" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:padding="50dp"
-        android:background="@drawable/round_corner_bg"
-        android:layout_height="200dp">
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@color/lighterGreen"
+        android:layout_height="250dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="STUDENTS"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textColor="#19434C"/>
     <Button
         android:id="@+id/addStudents"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginVertical="10dp"
+        android:textColor="#fff"
+        android:background="@drawable/black_btn_bg"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:text="@string/add_student"
        />
 
     <Button
         android:id="@+id/editStudents"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginVertical="10dp"
+        android:textColor="#fff"
+        android:background="@drawable/black_btn_bg"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:text="@string/edit_students"
         />
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:text="@string/signout"/>
+
     </LinearLayout>
+            <Button
+                android:id="@+id/logout"
+                android:layout_width="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_height="50dp"
+                android:background="#AB492A"
+               android:layout_gravity="right"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_marginRight="30dp"
+                android:text="@string/signout"/>
+        </LinearLayout>
 
+    </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

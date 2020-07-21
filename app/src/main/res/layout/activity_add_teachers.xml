@@ -82,7 +82,7 @@
         android:id="@+id/idAddTeacherSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorText"
+        android:background="@drawable/black_btn_bg"
         android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

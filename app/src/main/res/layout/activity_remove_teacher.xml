@@ -60,10 +60,11 @@
 
     <Button
         android:id="@+id/remove"
-        android:layout_width="match_parent"
+        android:layout_width="180dp"
         android:layout_height="40dp"
-        android:background="@color/black"
+        android:background="@drawable/black_btn_bg"
         android:text="@string/remove_teacher"
+        android:layout_gravity="center_horizontal"
         android:textColor="@color/colorbg"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="20dp"

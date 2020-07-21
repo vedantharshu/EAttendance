@@ -70,7 +70,7 @@
         android:layout_marginTop="10dp"
         android:layout_height="45dp"
         android:textColor="@color/colorbg"
-        android:background="@color/black"
+        android:background="@drawable/black_btn_bg"
         android:text="@string/search" />
 
 
@@ -98,7 +98,7 @@
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/colorbg"
-        android:background="@color/black"
+        android:background="@drawable/black_btn_bg"
         android:text=" Assign a new Class" />
     </LinearLayout>
 
