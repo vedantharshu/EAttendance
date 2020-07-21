@@ -18,9 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40sp"
-            android:background="@drawable/round_corner_bg"
+            android:background="@drawable/black_btn_bg"
             android:layout_marginVertical="20sp"
             android:elevation="5sp"
+            android:textColor="@color/colorbg"
             android:layout_alignParentBottom="true"
             android:text="@string/submit_attendance"
             android:id="@+id/submit_attenBTN"/>

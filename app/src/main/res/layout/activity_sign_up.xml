@@ -92,13 +92,15 @@
         </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/register_btn"
-        android:layout_width="match_parent"
+        android:layout_width="160dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="40dp"
         android:layout_marginTop="30dp"
         android:layout_marginHorizontal="80dp"
         android:text="@string/register"
         android:textStyle="bold"
-        android:background="#228899"
+        android:textColor="@color/colorbg"
+        android:background="@drawable/black_btn_bg"
         />
     <TextView
         android:id="@+id/login_btn_on_signup"

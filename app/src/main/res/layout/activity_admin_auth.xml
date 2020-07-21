@@ -82,7 +82,7 @@
             android:layout_marginHorizontal="80dp"
             android:text="@string/login"
             android:textStyle="bold"
-            android:background="#228899"
+            android:background="@drawable/black_btn_bg"
             android:id="@+id/login_btn"/>
 
         <TextView
