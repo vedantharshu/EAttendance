@@ -28,7 +28,6 @@ public class UpdateActivity extends AppCompatActivity {
     private DatabaseReference mref, mref1,mref2;
     private String stuname, code;
     private String[] sn;
-    private int i;
     private boolean mark;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,6 @@ public class UpdateActivity extends AppCompatActivity {
                 lecture=extras.getString("lecture");
                 code = adminID.split("_")[1];
             }
-
             fetchedList=new ArrayList<>();
         listView = findViewById(R.id.attendanceLv);
         mref = FirebaseDatabase.getInstance().getReference("Admins").child(adminID);
@@ -69,7 +67,6 @@ public class UpdateActivity extends AppCompatActivity {
 
                     stuname=dataSnapshot.child("Students").child(class_value).child(st).child("username").getValue().toString();
                     sn=stuname.split(" ");
-                    //Toast.makeText(UpdateActivity.this, sn[1], Toast.LENGTH_LONG).show();
 
                     studentList.add(new AttendanceItem(sn[0],sn[1],mark));
                 }
@@ -101,12 +98,8 @@ public class UpdateActivity extends AppCompatActivity {
                     }
                     else if(!attendance.isSelected()){
                         mref1.child(code+"_ST_"+class_value+"_"+attendance.getRollno()).setValue("absent");
-
-                       
                     }
                 }
-
-                //Toast.makeText(getApplicationContext(),responseText, Toast.LENGTH_LONG).show();
 
                 mref2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -139,6 +132,7 @@ public class UpdateActivity extends AppCompatActivity {
 
                     }
                 });
+                finish();
             }
         });
     }

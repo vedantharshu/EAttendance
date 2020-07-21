@@ -103,8 +103,6 @@ public class addClassDialog  extends AppCompatDialogFragment {
 
     private void addClass(final String classValue, final String sectionValue, final String subjectName){
 
-        Toast.makeText(getContext(),
-                teacherID+ " " +classValue+sectionValue + " " + subjectName, Toast.LENGTH_SHORT).show();
         mref = FirebaseDatabase.getInstance().getReference("Admins").child("AD_"+code).child("Teachers").child(teacherID)
                 .child("Classes");
 

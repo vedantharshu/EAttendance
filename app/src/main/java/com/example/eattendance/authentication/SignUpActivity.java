@@ -57,8 +57,6 @@ public class SignUpActivity extends AppCompatActivity {
                 code = school_code.getText().toString().trim();
                 if(code.equals("")){
                     school_code.setError("Enter School Code");
-                    Toast.makeText(SignUpActivity.this, "Enter School Code!!",
-                            Toast.LENGTH_SHORT).show();
                 }
                 else {
                     mref.addValueEventListener(new ValueEventListener() {
@@ -87,33 +85,21 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUpUser(String email, String password, String confirmPassword) {
         if(email.equals("")){
             user_email.setError("Enter Email");
-            Toast.makeText(SignUpActivity.this, "Enter Email!!",
-                    Toast.LENGTH_SHORT).show();
         }
         else if(password.equals("")){
             user_password.setError("Enter Password");
-            Toast.makeText(SignUpActivity.this, "Enter Password!!",
-                    Toast.LENGTH_SHORT).show();
         }
         else if(confirmPassword.equals("")){
             confirm_password.setError("Password Didn't Match");
-            Toast.makeText(SignUpActivity.this, "Password Didn't Match!!",
-                    Toast.LENGTH_SHORT).show();
         }
         else if((user_name.getText().toString()).equals("")){
             user_name.setError("Enter School Name");
-            Toast.makeText(SignUpActivity.this, "Enter School Name!!",
-                    Toast.LENGTH_SHORT).show();
         }
         else if(password.compareTo(confirmPassword)!=0){
             confirm_password.setError("Password Didn't Match");
-            Toast.makeText(SignUpActivity.this, "Password Didn't Match!!",
-                    Toast.LENGTH_SHORT).show();
         }
         else if(password.length()<8){
             confirm_password.setError("Password Too Short");
-            Toast.makeText(SignUpActivity.this, "Password Too Short!!",
-                    Toast.LENGTH_SHORT).show();
         }
         else {
             uname=user_email.getText().toString().trim();
@@ -125,11 +111,10 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-
                                 userProfile();
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(SignUpActivity.this, "Sign up failed: " + task.getException(),
+                                Toast.makeText(SignUpActivity.this, "Sign up failed",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }

@@ -71,7 +71,6 @@ public class RemoveStudentAdapter extends ArrayAdapter<RemoveStudent> {
                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getContext(),"Delete cancelled", Toast.LENGTH_LONG);
                    }
                });
                builder.show();

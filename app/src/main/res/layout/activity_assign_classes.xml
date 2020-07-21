@@ -5,6 +5,7 @@
     android:id="@+id/listOfClasses"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/newbg"
     tools:context=".admin.teachers.AssignClasses">
 
     <LinearLayout

@@ -24,7 +24,6 @@ import com.example.eattendance.admin.teachers.AddTeachers;
 import com.example.eattendance.admin.teachers.AssignClasses;
 import com.example.eattendance.admin.teachers.RemoveTeacher;
 import com.example.eattendance.authentication.AdminAuth;
-import com.example.eattendance.teacher.TeacherActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -55,7 +54,6 @@ public class AdminActivity extends AppCompatActivity {
             code = extras.getString("code");
         }
 
-        Log.d("TAG1", "onCreate: Admin"+code);
         addStudents.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
@@ -104,6 +102,7 @@ public class AdminActivity extends AppCompatActivity {
                 mAuth.signOut();
                 Intent i = new Intent(AdminActivity.this , AdminAuth.class);
                 startActivity(i);
+                finish();
             }
         });
     }

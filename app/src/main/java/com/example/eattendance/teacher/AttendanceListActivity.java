@@ -42,15 +42,11 @@ public class AttendanceListActivity extends AppCompatActivity {
     private ArrayList<String> IDs;
     private ArrayList<String> pres_abs;
     private String date,subject,lecture;
-    private boolean dateExists;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_list);
-        Log.d(TAG,"AttendanceListActivity: Started");
-
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -97,14 +93,10 @@ public class AttendanceListActivity extends AppCompatActivity {
                 }
                 adapter=new AttendanceListAdapter(AttendanceListActivity.this,R.layout.activity_attendance_list,studentList);
                 listView.setAdapter(adapter);
-                Log.d(TAG, "StudentList got........:)");
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                //Toast.makeText(AttendanceListActivity.this, "database error", Toast.LENGTH_LONG).show();
-                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
 
@@ -180,8 +172,6 @@ public class AttendanceListActivity extends AppCompatActivity {
 
                     }
                 });
-                //Toast.makeText(getApplicationContext(),present, Toast.LENGTH_LONG).show();
-
                 finish();
             }
         });

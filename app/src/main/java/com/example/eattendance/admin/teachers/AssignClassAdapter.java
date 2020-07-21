@@ -30,6 +30,7 @@ public class AssignClassAdapter extends ArrayAdapter<ClassItems> {
     List<ClassItems> classList;
     DatabaseReference mref;
     String teacherID, code;
+
     public AssignClassAdapter(Context context, int resource,  @NonNull List<ClassItems> objects, String teacherID,String code) {
         super(context, resource, objects);
         this.context = context;
@@ -89,4 +90,3 @@ public class AssignClassAdapter extends ArrayAdapter<ClassItems> {
         notifyDataSetChanged();
     }
 }
-

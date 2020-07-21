@@ -24,8 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Spinner spinner;
+public class LoginActivity extends AppCompatActivity {
     Button login;
     String item;
     EditText username,password;
@@ -39,15 +38,24 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        spinner=(Spinner)findViewById(R.id.role_spinner);
-        login=(Button)findViewById(R.id.loginBTN);
-        username=(EditText)findViewById(R.id.usernameET);
-        password=(EditText)findViewById(R.id.passwordET);
+
+        login = findViewById(R.id.loginBTN);
+        username= findViewById(R.id.usernameET);
+        password= findViewById(R.id.passwordET);
         forgot_password = findViewById(R.id.forgot_password);
         database = FirebaseDatabase.getInstance();
 
+        Bundle extras = getIntent().getExtras();
 
-        spinner.setOnItemSelectedListener(this);
+        if (extras != null) {
+            item = extras.getString("item");
+        }
+        if(item.equals("Teacher")){
+            username.setHint("Username(eg. 201_TE_1)");
+        }
+        if(item.equals("Student")){
+            username.setHint("Username(eg. 201_ST_2A_1)");
+        }
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     String[] s=uname.split("_");
                     String code=s[0];
                     adminID="AD_"+code;
-                    Toast.makeText(LoginActivity.this, adminID, Toast.LENGTH_SHORT).show();
+
                     myRef= database.getReference("Admins").child(adminID);
                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -100,7 +108,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
                     String code=s[0];//210
                     adminID="AD_"+code;//AD_210
                     standard = s[2];
-                    Toast.makeText(LoginActivity.this, adminID, Toast.LENGTH_SHORT).show();
                     mref = FirebaseDatabase.getInstance().getReference("Admins").child(adminID).child("Students");
                     mref.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -151,16 +158,6 @@ public class LoginActivity extends AppCompatActivity implements AdapterView.OnIt
         });
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        item = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 
     @Override
     public void onBackPressed() {

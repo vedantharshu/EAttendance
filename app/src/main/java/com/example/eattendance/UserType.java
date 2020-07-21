@@ -32,6 +32,7 @@ public class UserType extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(UserType.this, LoginActivity.class);
+                i.putExtra("item","Student");
                 startActivity(i);
             }
         });
@@ -40,6 +41,7 @@ public class UserType extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(UserType.this, LoginActivity.class);
+                i.putExtra("item","Teacher");
                 startActivity(i);
             }
         });
