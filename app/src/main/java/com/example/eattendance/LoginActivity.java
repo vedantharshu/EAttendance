@@ -49,12 +49,11 @@ public class LoginActivity extends AppCompatActivity {
 
         if (extras != null) {
             item = extras.getString("item");
-        }
-        if(item.equals("Teacher")){
-            username.setHint("Username(eg. 201_TE_1)");
-        }
-        if(item.equals("Student")){
-            username.setHint("Username(eg. 201_ST_2A_1)");
+            if (item.equals("Teacher")) {
+                username.setHint("Username(eg. 201_TE_1)");
+            } else if (item.equals("Student")) {
+                username.setHint("Username(eg. 201_ST_2A_1)");
+            }
         }
         login.setOnClickListener(new View.OnClickListener() {
             @Override
