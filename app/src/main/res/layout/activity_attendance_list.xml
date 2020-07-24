@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/newbg"
+    android:layout_height="match_parent"
+    tools:context=".teacher.AttendanceListActivity">
+
+        <ListView
+            android:id="@+id/attendanceLV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="90sp"></ListView>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40sp"
+            android:background="@drawable/black_btn_bg"
+            android:layout_marginVertical="20sp"
+            android:elevation="5sp"
+            android:textColor="@color/colorbg"
+            android:layout_alignParentBottom="true"
+            android:text="@string/submit_attendance"
+            android:id="@+id/submit_attenBTN"/>
+
+
+
+
+
+</RelativeLayout>

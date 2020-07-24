@@ -1,17 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StudentActivity">
+    android:background="@drawable/newbg"
+    tools:context=".student.StudentActivity">
 
-    <Button
-        android:id="@+id/addStudent"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Check"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="147dp" />
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:layout_marginLeft="20dp"
+            android:textSize="25sp"
+            android:layout_marginTop="10dp"
+            android:textColorHighlight="@color/black"
+            android:textStyle="italic">
+        </TextView>
 
-</LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/overallAttendanceCard"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            app:cardBackgroundColor="@color/lightestGreen"
+            app:cardCornerRadius="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Overall Attendance"
+                android:textAlignment="center"
+                android:textColorHighlight="@color/black"
+                android:textSize="20dp"
+                android:textStyle="italic"></TextView>
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/circularProgressBar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                app:cpb_background_progressbar_color="@color/lightGreen"
+                app:cpb_background_progressbar_color_direction="left_to_right"
+                app:cpb_background_progressbar_width="20dp"
+                app:cpb_progress="0"
+                app:cpb_progress_direction="to_right"
+                app:cpb_progress_max="100"
+                app:cpb_progressbar_color="@color/colorText"
+                app:cpb_progressbar_width="20dp"
+                app:cpb_round_border="true"
+                app:cpb_start_angle="90" />
+
+            <TextView
+                android:id="@+id/attendanceValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0%"></TextView>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/todaysAttendanceCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overallAttendanceCard"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:cardBackgroundColor="@color/lightestGreen"
+            app:cardCornerRadius="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Today's Attendance"
+                android:textColorHighlight="@color/black"
+                android:textSize="20dp"
+                android:textStyle="italic"></TextView>
+
+            <Button
+                android:id="@+id/todaysAttendancebtn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/plus"></Button>
+
+            <ListView
+                android:id="@+id/ListViewTodaysAttendance"
+                android:layout_marginTop="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ChooseAttendace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/todaysAttendanceCard"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:cardBackgroundColor="@color/lightestGreen"
+            app:cardCornerRadius="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Check Attendance"
+                android:textColorHighlight="@color/black"
+                android:textSize="20dp"
+                android:textStyle="italic"></TextView>
+
+            <Button
+                android:id="@+id/chooseDate"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="170dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="110dp"
+                android:background="@drawable/ic_baseline_calendar_today_24"
+                />
+
+            <Button
+                android:id="@+id/checkAttendancebtn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/plus"></Button>
+
+            <ListView
+                android:id="@+id/checkAttendancelist"
+                android:layout_marginTop="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.cardview.widget.CardView>
+        <Button
+            android:layout_width="80dp"
+            android:layout_gravity="right"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:background="#AB492A"
+            android:text="@string/signout"
+            android:layout_marginHorizontal="20dp"
+            android:textColor="@color/colorbg"
+            android:id="@+id/logout"/>
+    </LinearLayout>
+</ScrollView>

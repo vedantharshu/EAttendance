@@ -1,77 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddTeachers"
-    android:orientation="vertical">
+    android:background="@drawable/newbg"
+    tools:context=".admin.students.AddStudent">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="@string/enter_subject"
-        android:textStyle="bold"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="80dp"/>
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="10dp"
-        android:entries="@array/subject_choice"
-        android:textAlignment="center"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/teacher_name"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.115"
+        tools:ignore="MissingConstraints" />
 
-        android:background="@drawable/round_corner_bg"
-        android:id="@+id/subject_spinner"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="@string/enter_class"
-        android:textStyle="bold"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="40dp"/>
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="10dp"
-        android:entries="@array/class_choice"
-        android:textAlignment="center"
-
-        android:background="@drawable/round_corner_bg"
-        android:id="@+id/class_spinner"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="@string/enter_section"
-        android:textStyle="bold"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="40dp"/>
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="10dp"
-        android:entries="@array/section_choice"
-        android:textAlignment="center"
-
-        android:background="@drawable/round_corner_bg"
-        android:id="@+id/section_spinner"/>
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/idTAddeacherFullName"
+        android:layout_width="340dp"
         android:layout_height="40dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="50dp"
-        android:inputType="textCapWords"
-        android:hint="@string/teacher_code"
-        android:id="@+id/teacher_code"
-        android:autofillHints="" />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/add_teachers"
-        android:id="@+id/adding_teacher"/>
+        android:background="@drawable/round_corner_bg"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.181"
+        tools:ignore="MissingConstraints" />
 
-</LinearLayout>
+    <EditText
+        android:id="@+id/idAddTeacherID"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_corner_bg"
+        android:ems="10"
+        android:textSize="30dp"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.412" />
+
+    <TextView
+        android:id="@+id/isAddTeacherSchoolCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/school_code"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.335" />
+
+    <TextView
+        android:id="@+id/idAddTeacherIDText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/teacher_ID"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.778"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.335" />
+
+    <Button
+        android:id="@+id/idAddTeacherSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/black_btn_bg"
+        android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.659" />
+
+    <TextView
+        android:id="@+id/idAddTeacherSchoolCode"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_corner_bg"
+        android:gravity="center"
+        android:text="210"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.412" />
+
+    <TextView
+        android:id="@+id/textTE"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:background="@drawable/round_corner_bg"
+        android:gravity="center"
+        android:text="@string/te"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.412" />
+</androidx.constraintlayout.widget.ConstraintLayout>
