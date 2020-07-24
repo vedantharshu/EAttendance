@@ -6,4 +6,4 @@ The app's working is divided into three parts:
 2. the teacher: he/she has capability to mark the attendance and update the attendance for current or previous days.
 3. the student: any student can see his overall attendance and also check his attendance for any given day.
 
-Started on 5th july and completed on 25th july 2020, with the help of my dear friends Shivansh Srivastava, Ojasva Verma and Jagrat Katara.
+Started on 10th july 2020 and completed on 25th july 2020, with the help of my dear friends Shivansh Srivastava, Ojasva Verma and Jagrat Katara.
