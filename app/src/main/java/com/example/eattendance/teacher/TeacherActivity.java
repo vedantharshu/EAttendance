@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.example.eattendance.LoginActivity;
 import com.example.eattendance.R;
 import com.example.eattendance.backendAdmin.TeacherDetail;
+import com.example.eattendance.student.StudentActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,7 +63,9 @@ public class TeacherActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TeacherActivity.this, LoginActivity.class));
+                Intent i = new Intent(TeacherActivity.this, LoginActivity.class);
+                i.putExtra("item","Teacher");
+                startActivity(i);
                 finish();
             }
         });
@@ -248,7 +252,9 @@ public class TeacherActivity extends AppCompatActivity {
         });
         builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                startActivity(new Intent(TeacherActivity.this, LoginActivity.class));
+                Intent i = new Intent(TeacherActivity.this, LoginActivity.class);
+                i.putExtra("item","Teacher");
+                startActivity(i);
                 finish();
             }
         });

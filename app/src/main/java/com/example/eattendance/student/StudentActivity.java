@@ -96,7 +96,9 @@ public class StudentActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StudentActivity.this, LoginActivity.class));
+                Intent i = new Intent(StudentActivity.this, LoginActivity.class);
+                i.putExtra("item","Student");
+                startActivity(i);
                 finish();
             }
         });
@@ -288,7 +290,9 @@ public class StudentActivity extends AppCompatActivity {
         });
         builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                startActivity(new Intent(StudentActivity.this, LoginActivity.class));
+                Intent i = new Intent(StudentActivity.this, LoginActivity.class);
+                i.putExtra("item","Student");
+                startActivity(i);
                 finish();
             }
         });

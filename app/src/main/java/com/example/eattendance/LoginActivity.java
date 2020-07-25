@@ -55,6 +55,9 @@ public class LoginActivity extends AppCompatActivity {
                 username.setHint("Username(eg. 201_ST_2A_1)");
             }
         }
+        else{
+            item = "";
+        }
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
