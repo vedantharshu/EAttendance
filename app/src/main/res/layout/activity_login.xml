@@ -51,7 +51,7 @@
         android:background="@drawable/round_corner_bg"
         android:paddingStart="10dp"
         android:hint="@string/password"
-        android:inputType="textCapWords"
+        android:inputType="textPassword"
         android:id="@+id/passwordET"
         android:importantForAutofill="no"/>
         </com.google.android.material.textfield.TextInputLayout>
